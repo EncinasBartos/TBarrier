@@ -23,11 +23,7 @@ The code in the book was tested with Python 3.7.
 
 The libraries used to run this book are listed in [requirements.txt](requirements.txt).
 
-Start by installing Anaconda (or Miniconda). For a complete installation guideline we refer to
-
-Next, clone this project by opening a terminal and typing the following commands (do not type the first $ signs on each line, they just indicate that these are terminal commands):
-
-It is recommended to use Anaconda. Users can follow the [Installation-guideline](Installation.md) in this repository.
+Start by installing Anaconda (or Miniconda). For a complete [Installation-guideline](Installation.md) we refer to the 'Installation.md'in this repository.
 
 You can read more about using conda environments in the [Managing Environments](http://conda.pydata.org/docs/using/envs.html) section of the conda documentation.
 
