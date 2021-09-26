@@ -1,34 +1,32 @@
 # Jupyter-LCS
 
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/Index.ipynb)
-
 This repository contains the entire collection of jupyter notebooks .
 
 ![cover image](notebooks/figures/PDSH-cover.png)
 
 ## How to Use this Book
 
-- Read the book in its entirety online at 
+- Read the book in its entirety online at ... 
 
-- Run the code using the Jupyter notebooks available in this repository's [notebooks](notebooks) directory.
-
-- Launch executable versions of these notebooks using [Google Colab](http://colab.research.google.com): [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/Index.ipynb)
+- Run the code using the Jupyter notebooks available in this repository's [notebooks](2D) directory.
 
 ## About
 
 The handbook was written and tested with Python 3.7.
 
-The book introduces the core libraries essential for working with data in Python: particularly [IPython](http://ipython.org), [NumPy](http://numpy.org), [Pandas](http://pandas.pydata.org), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org), and related packages.
-Familiarity with Python as a language is assumed; if you need a quick introduction to the language itself, see the free companion project,
-[A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython): it's a fast-paced introduction to the Python language aimed at researchers and scientists.
+The book introduces the core algorithms essential for computing Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
 
-See [Index.ipynb](http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/Index.ipynb) for an index of the notebooks available to accompany the text.
+Familiarity with Python and its core libraries ([NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed. For a quick introduction to the libraries and the programming language see [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython)
+
 
 ## Software
 
 The code in the book was tested with Python 3.7.
 
-The packages I used to run the code in the book are listed in [requirements.txt](requirements.txt) (Note that some of these exact version numbers may not be available on your platform: you may have to tweak them for your own use).
+The libraries used to run this book are listed in [requirements.txt](requirements.txt).
+
+It is recommended to use Anaconda
+
 ```
 
 To create a stand-alone environment named ``LCS`` with Python 3.7 and all the required package versions, run the following at the command-line:
