@@ -1,0 +1,19 @@
+name: LCS
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipython=7.20 # Python shell
+  - joblib=0.14 # Parallel computing
+  - jupyter=1.0 # to edit and run Jupyter notebooks
+  - matplotlib=3.3 # Plotting library
+  - numpy=1.19 # Numerical computing tools
+  - pip # Python's package-management system
+  - scipy=1.6 # Scientific/technical computing library
+  - wheel # built-package format for pip
+  - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
+  - pip:
+    - tensorboard==1.15.0 # TensorFlow's visualization toolkit
+    - tensorflow==1.15.5 # or tensorflow-gpu if you have a TF-compatible GPU
+    - urlextract==1.2.0
+© 2021 GitHub, Inc.
