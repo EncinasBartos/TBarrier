@@ -1,0 +1,8 @@
+##### Core scientific packages
+jupyter==1.0.0
+matplotlib==3.3.4
+numpy==1.19.5
+scipy==1.6.0
+
+# Parallel computing package
+joblib==0.14.1
