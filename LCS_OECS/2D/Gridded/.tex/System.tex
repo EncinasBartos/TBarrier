@@ -1,0 +1,1462 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    %\DeclareCaptionFormat{nocaption}{}
+    %\captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for grffile with XeLaTeX
+    \def\Gread@@xetex#1{%
+      \IfFileExists{"\Gin@base".bb}%
+      {\Gread@eps{\Gin@base.bb}}%
+      {\Gread@@xetex@aux#1}%
+    }
+    \makeatother
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{System}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        \ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    \tableofcontents\section{System}
+
+The class $ System $ stores all the properties of a dynamical system. The methods and variables defined within the class $ System $ apply to general two dimensional dynamical systems. The class $ System $ inherits all the methods and variables from their parent classes $ LCS $ and $ OECS $ which are defined in separate files.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import libraries and classes defined in other files.}
+\PY{k+kn}{from} \PY{n+nn}{ipynb}\PY{n+nn}{.}\PY{n+nn}{fs}\PY{n+nn}{.}\PY{n+nn}{defs}\PY{n+nn}{.}\PY{n+nn}{LCS} \PY{k+kn}{import} \PY{n}{LCS}
+\PY{k+kn}{from} \PY{n+nn}{ipynb}\PY{n+nn}{.}\PY{n+nn}{fs}\PY{n+nn}{.}\PY{n+nn}{defs}\PY{n+nn}{.}\PY{n+nn}{OECS} \PY{k+kn}{import} \PY{n}{OECS}
+\PY{k+kn}{import} \PY{n+nn}{os}
+\PY{n}{current\PYZus{}path} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Current path: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{from} \PY{n+nn}{tqdm}\PY{n+nn}{.}\PY{n+nn}{notebook} \PY{k+kn}{import} \PY{n}{tqdm}
+\PY{k+kn}{from} \PY{n+nn}{joblib} \PY{k+kn}{import} \PY{n}{Parallel}\PY{p}{,} \PY{n}{delayed}
+
+\PY{k}{class} \PY{n+nc}{System}\PY{p}{(}\PY{n}{LCS}\PY{p}{,} \PY{n}{OECS}\PY{p}{)}\PY{p}{:}
+    
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n+nb}{super}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Current path:  C:\textbackslash{}Users\textbackslash{}encin\textbackslash{}OneDrive\textbackslash{}Jupyter\_LCS\textbackslash{}2D\textbackslash{}src\textbackslash{}Gridded
+    \end{Verbatim}
+\section{Initialization of discrete data and parameters of a general two dimensional dynamical system}\subsection{Initialize discrete data of two dimensional dynamical system}The method $ \_init\_data $ initializes the data of the two dimensional dynamical system.
+
+\textbf{Variables:}
+
+\begin{itemize}
+\item $self.Type: $ Type of velocity field. It can either be "Ocean" or "General". Oceanographic velocity fields deserve special treatment as their velocity units are given in $ \dfrac{m}{s} $, whereas the spatial units are given in $ degrees$ 
+\item $ self.X, self.Y: $ X, Y meshgrid.
+\item $ self.Time: $ Time array.
+\item $ self.U, self.V: $ x and y component of velocity field.
+\item $ self.boolean\_unsteady: $ Boolean variable which indicates whether the flow field is steady or unsteady. If unsteady, then it is set to $True$.
+\item $ self.dt\_data: $ Resolution in time of velocity data
+\item $ self.defined_domain: $ Boolean array which denotes the indices of the meshgrid (self.X, self.Y) over which the velocity-field is defined.
+\item $ self.Ncores: $ Number of cores to be used for parallel computing.
+\item $ self.incompressible: $ Boolean variable denoting whether the flow is compressible (False) or incompressible (True).
+\end{itemize}
+
+\newpage
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}init\PYZus{}data}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+        
+        \PY{c+c1}{\PYZsh{} Type of velocity field. \PYZob{}\PYZdq{}Ocean\PYZdq{}, \PYZdq{}General\PYZdq{}\PYZcb{} }
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Type} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    
+        \PY{c+c1}{\PYZsh{} Meshgrid}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Time}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Time} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Velocity field}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Specify steady/unsteady flow field. \PYZob{}True, False\PYZcb{}}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady} \PY{o}{=} \PY{n+nb}{bool}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{o}{.}\PY{n}{ndim} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{ndim}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Time resolution}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} If dealing with AVISO\PYZhy{}data, then velocity field has units of m/s, while spatial domain is given in degrees.}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZgt{} Change units of the velocity field from m/s to degrees/day so that the units of velocity field and the spatial domain match.}
+        \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Type} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ocean}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            
+            \PY{k+kn}{from} \PY{n+nn}{ipynb}\PY{n+nn}{.}\PY{n+nn}{fs}\PY{n+nn}{.}\PY{n+nn}{full}\PY{n+nn}{.}\PY{n+nn}{convert\PYZus{}ocean\PYZus{}velocity\PYZus{}units} \PY{k+kn}{import} \PY{n}{convert\PYZus{}ocean\PYZus{}velocity\PYZus{}units}
+        
+            \PY{c+c1}{\PYZsh{} Velocity field in degrees/day}
+            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                    
+                    \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady}\PY{p}{:}
+                    
+                        \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                        
+                            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{convert\PYZus{}ocean\PYZus{}velocity\PYZus{}units}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{t}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{else}\PY{p}{:}
+                        
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{convert\PYZus{}ocean\PYZus{}velocity\PYZus{}units}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} The velocity at points in space where the velocity field is not defined is nan.}
+        \PY{c+c1}{\PYZsh{} (e.g. Land in case of AVISO data/ General wall boundaries)}
+        \PY{c+c1}{\PYZsh{} self.defined\PYZus{}domain denotes indices of meshgrid where the velocity field is defined.}
+        \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady}\PY{p}{:}
+            
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{isfinite}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+        
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{isfinite}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Global (gridded) Interpolation techniques cannot deal with nan\PYZhy{}values \PYZhy{}\PYZhy{}\PYZgt{} set nan values to zero (no\PYZhy{}slip boundary).}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{original\PYZus{}grid\PYZus{}spacing} \PY{o}{=} \PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Number of cores to be used for parallel computing whenever possible.}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Ncores} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Phase space dimension}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{ndim}
+    
+        \PY{c+c1}{\PYZsh{} Specify whether the flow is incompressible. \PYZob{}True, False\PYZcb{}}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{incompressible} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Specify whether the flow has periodic boundary conditions. \PYZob{}True, False\PYZcb{}}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{periodic} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Initialize parameters of dynamical system}Lagrangian particle trajectories are time-parametrized curves $ \mathbf{x}(t; t_0, \mathbf{x}_0) $ starting at $ \mathbf{x}_0 $ at time $ t_0 $ which are governed by the differential equation
+
+\begin{equation} \mathbf{\dot{x}}(t)= \mathbf{v}(\mathbf{x}, t) = \begin{pmatrix} u(x, y, t) \\ v(x, y, t) \end{pmatrix} \label{eq: dxdt}, \end{equation}
+where $ \mathbf{x}=\begin{pmatrix} x \\ y \end{pmatrix} \in U $ and times $ t \in [t_0, t_N] $.
+
+As suggested by figure \ref{fig: dxdt}, the particle trajectories generated by the velocity-field $ \mathbf{v}(\mathbf{x}, t) $ are defined over a domain $ U $ with boundary $ \partial U $ over the finite time interval $ t \in [t_0, t_N] $.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Figures/Differential}
+\caption{Particle trajectories $ \mathbf{x}(t;t_0,\mathbf{x}_0) $ defined over the time interval $ [t_0, t_N] $ in the domain $  \mathbf{x} \in U $}
+\label{fig: dxdt}
+\end{figure}
+
+The function $\_init\_ds$ specifies properties such as the domain $ U $ and the time interval $ [t_0, t_N] $ of the dynamical system from eq. \ref{eq: dxdt}.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}init\PYZus{}ds}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+
+        \PY{c+c1}{\PYZsh{} time interval [t0, tN]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Initial time (in days)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{t0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+        \PY{c+c1}{\PYZsh{} Final time (in days)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{tN} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lenT} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} time step\PYZhy{}size}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} longitudinal and latitudinal arrays (in degrees)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} define grid spacing}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmax} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymax} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain}\PY{p}{)}
+    
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X\PYZus{}domain}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y\PYZus{}domain} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x\PYZus{}domain}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y\PYZus{}domain}\PY{p}{)}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Specify auxiliary grid}
+        
+        \PY{n}{ratio\PYZus{}aux} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} 
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{aux\PYZus{}grid\PYZus{}spacing} \PY{o}{=} \PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx}\PY{o}{*}\PY{n}{ratio\PYZus{}aux}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy}\PY{o}{*}\PY{n}{ratio\PYZus{}aux}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+\section{Fundamentals of a dynamical system}\subsection{Interpolation of discrete velocity data}
+As we are dealing with a discrete (and generally sparse) representation of the velocity-field $ \mathbf{v}(\mathbf{x}, t) $ defined on a discrete domain $ \mathbf{x} \in U $ over the discrete time interval $ [t_0, t_N] $, we seek to generally evaluate the velocity of the particle
+
+\begin{equation} \mathbf{\dot{x}}(t)= \mathbf{v}(\mathbf{x}, t) = \begin{pmatrix} u(x, y, t) \\ v(x, y, t) \label{eq: dxdt} \end{pmatrix} \end{equation} 
+
+at arbitrary locations $ \mathbf{x}=\begin{pmatrix} x \\ y \end{pmatrix} \in U $ and times $ t \in [t_0, t_N] $.
+
+The velocity field is reconstructed using rectangular bivariate spline interpolation from the \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.RBFInterpolator.html}{scipy}-library. The interpolator can deal with both steady and unsteady 2D velocity fields. For steady velocity fields we avoid interpolating with respect to time. By default the interpolatin with respect to time is linear, whereas the interpolation in the spatial dimension can be chosen to be either linear or cubic. The default value is "cubic".
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}Interpolation\PYZus{}velocity}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{method} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cubic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+    
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+        \PY{c+c1}{\PYZsh{} if velocity field is unsteady, then spatial interpolation}
+        \PY{c+c1}{\PYZsh{} is computed at each discrete time.}
+        \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady}\PY{p}{:}    
+                    
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Interpolation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{method}\PY{p}{)}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Interpolation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{method}\PY{p}{)}\PY{p}{)}               
+        
+        \PY{c+c1}{\PYZsh{} if velocity field is steady, then spatial interpolation}
+        \PY{c+c1}{\PYZsh{} is computed only once.}
+        \PY{k}{else}\PY{p}{:}
+                    
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Interpolation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{U}\PY{p}{,} \PY{n}{method}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Interpolation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V}\PY{p}{,} \PY{n}{method}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}Interpolation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Field}\PY{p}{,} \PY{n}{method} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cubic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+        
+        \PY{c+c1}{\PYZsh{} kernel used for interpolation in space. }
+        \PY{c+c1}{\PYZsh{} \PYZob{}\PYZdq{}cubic\PYZdq{}, \PYZdq{}linear\PYZdq{}\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Cubic interpolation}
+        \PY{k}{if} \PY{n}{method} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cubic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                
+            \PY{n}{kx} \PY{o}{=} \PY{l+m+mi}{3}
+            \PY{n}{ky} \PY{o}{=} \PY{l+m+mi}{3}
+               
+        \PY{c+c1}{\PYZsh{} linear interpolation}
+        \PY{k}{elif} \PY{n}{method} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            
+            \PY{n}{kx} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{ky} \PY{o}{=} \PY{l+m+mi}{1}
+    
+        \PY{c+c1}{\PYZsh{} import Rectangular bivariate spline from scipy}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k+kn}{import} \PY{n}{RectBivariateSpline} \PY{k}{as} \PY{n}{RBS}
+        
+        \PY{k}{return} \PY{n}{RBS}\PY{p}{(}\PY{n}{Y}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{Field}\PY{p}{,} \PY{n}{kx} \PY{o}{=} \PY{n}{kx}\PY{p}{,} \PY{n}{ky} \PY{o}{=} \PY{n}{ky}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Check position of particle}
+The method $\_check\_location$ checks if the point $ x $ is in a domain where the velocity field is defined. 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}check\PYZus{}location}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n}{idx\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{searchsorted}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{n}{idx\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{searchsorted}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{or} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{or} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{or} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+            
+            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n}{Condition\PYZus{}nan} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{if} \PY{n}{Condition\PYZus{}nan} \PY{o}{==} \PY{l+m+mi}{4}\PY{p}{:}
+        
+                \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{IN}\PY{l+s+s2}{\PYZdq{}}
+                    
+            \PY{k}{elif} \PY{n}{Condition\PYZus{}nan} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            
+                \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+        
+            \PY{k}{elif} \PY{n}{Condition\PYZus{}nan} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+            
+                \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                
+            \PY{k}{elif} \PY{n}{Condition\PYZus{}nan} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{k}{if} \PY{n}{idx\PYZus{}y} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{idx\PYZus{}x} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                        
+                        \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                    
+                    \PY{k}{else}\PY{p}{:}
+                        
+                        \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                        
+                        \PY{k}{else}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                        
+                \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{k}{if} \PY{n}{idx\PYZus{}y} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{idx\PYZus{}x} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    
+                        \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                    
+                    \PY{k}{else}\PY{p}{:}
+                    
+                        \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                        
+                        \PY{k}{else}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                        
+                \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{k}{if} \PY{n}{idx\PYZus{}y} \PY{o}{==} \PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{idx\PYZus{}x} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                        
+                        \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                    
+                    \PY{k}{else}\PY{p}{:}
+                        
+                        \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                        
+                        \PY{k}{else}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                        
+                \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{k}{if} \PY{n}{idx\PYZus{}y} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o+ow}{and} \PY{n}{idx\PYZus{}x} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    
+                        \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                    
+                    \PY{k}{else}\PY{p}{:}
+                    
+                        \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                        
+                        \PY{k}{else}\PY{p}{:}
+                        
+                            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}
+                        
+            \PY{k}{elif} \PY{n}{Condition\PYZus{}nan} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+                
+                \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}
+                    
+                
+        \PY{k}{return} \PY{n}{loc}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{,} \PY{n}{idx\PYZus{}y}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Differential equation}
+The method $ \_dxdt $ evaluates the right-hand-side of the differential equation given in \ref{eq: dxdt}.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}dxdt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+        
+        \PY{k}{if} \PY{l+m+mi}{0} \PY{o+ow}{in} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{:}
+        
+            \PY{c+c1}{\PYZsh{} Check location of lagrangian particle.}
+            \PY{n}{loc}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{,} \PY{n}{idx\PYZus{}y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}check\PYZus{}location}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+            
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n}{loc} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{IN}\PY{l+s+s2}{\PYZdq{}}
+            
+        \PY{c+c1}{\PYZsh{} If inside defined domain, then velocity at point x at time t}
+        \PY{c+c1}{\PYZsh{} can be evaluated using the interpolant}
+        \PY{k}{if} \PY{n}{loc} \PY{o}{==}  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{IN}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            
+            \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+        
+        \PY{k}{elif} \PY{n}{loc} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BOUNDARY}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            
+            \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}boundary}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{,} \PY{n}{idx\PYZus{}y}\PY{p}{)}
+        
+        \PY{k}{elif} \PY{n}{loc} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{OUT}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            
+            \PY{k}{return} \PY{k+kc}{None}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Velocity in defined domain}
+
+The method $ \_velocity\_domain $ computes the velocity of a particle which is in a domain where the velocity field is defined.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+        
+        \PY{k+kn}{from} \PY{n+nn}{math} \PY{k+kn}{import} \PY{n}{floor}
+            
+        \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady}\PY{p}{:}
+            
+            \PY{n}{k} \PY{o}{=} \PY{n}{floor}\PY{p}{(}\PY{n}{t}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{p}{)}
+            
+            \PY{n}{ui} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{uf} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{u} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{*}\PY{n}{ui} \PY{o}{+} \PY{p}{(}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{p}{)}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{*}\PY{n}{uf}
+            
+            \PY{n}{vi} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{vf} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v}\PY{p}{[}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{v} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{k}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{)}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{*}\PY{n}{vi} \PY{o}{+} \PY{p}{(}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{p}{)}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dt\PYZus{}data}\PY{o}{*}\PY{n}{vf}
+        
+        \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{boolean\PYZus{}unsteady} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+            
+            \PY{n}{u} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}u}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{v} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Interpolant\PYZus{}v}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        
+        \PY{n}{vel} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{n}{v}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{return} \PY{n}{vel}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Velocity on boundary}
+
+The method $ \_velocity\_boundary $ computes the velocity of a particle in proximity of a solid boundary (e.g. wall/land). We thereby assume a no-slip boundary condition.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}velocity\PYZus{}boundary}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{,} \PY{n}{idx\PYZus{}y}\PY{p}{)}\PY{p}{:}
+                
+        \PY{n}{check\PYZus{}idx} \PY{o}{=} \PY{p}{(}\PY{n}{idx\PYZus{}x} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{idx\PYZus{}y} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n}{x\PYZus{}p} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{y\PYZus{}p} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} left boundary }
+        \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            
+            \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                    
+            \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                    
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+            \PY{n}{x\PYZus{}tilde} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}wall}
+                    
+            \PY{n}{u} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            \PY{n}{v} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{p}{)}
+                 
+        \PY{c+c1}{\PYZsh{} right boundary}
+        \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            
+            \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}
+                    
+            \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+            \PY{n}{x\PYZus{}tilde} \PY{o}{=} \PY{n}{x\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+                    
+            \PY{n}{u} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            \PY{n}{v} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{p}{)}
+            
+        \PY{c+c1}{\PYZsh{} upper boundary}
+        \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+        
+            \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                                
+            \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                    
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                                  
+            \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{y\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+                    
+            \PY{n}{u} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{p}{)}
+            \PY{n}{v} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+                                  
+        \PY{c+c1}{\PYZsh{} lower boundary                  }
+        \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{2} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            
+            \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                                  
+            \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                    
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+            \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}wall}
+                    
+            \PY{n}{u} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{p}{)}
+            \PY{n}{v} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+        \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            
+            \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{or} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+            
+                \PY{n}{wall\PYZus{}orientation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            
+                \PY{n}{thickness} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            
+                \PY{n}{y\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+            
+                \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{n}{x\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{+}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{p}{(}\PY{n}{x\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+            
+                    \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            
+                \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                
+                \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+            
+                \PY{c+c1}{\PYZsh{} Coordinate transformation}
+            
+                \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{x\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{p}{(}\PY{n}{y\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+            
+                \PY{n}{u\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}
+                \PY{n}{v\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+                \PY{n}{u} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{+}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                \PY{n}{v} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                
+            \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{or} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+            
+                \PY{n}{wall\PYZus{}orientation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            
+                \PY{n}{thickness} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            
+                \PY{n}{y\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+            
+                \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{n}{x\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{+}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{p}{(}\PY{n}{x\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                
+                \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+            
+                    \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            
+                \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{:}
+                    
+                    \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            
+                \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+            
+                \PY{c+c1}{\PYZsh{} Coordinate transformation}
+            
+                \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{x\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{p}{(}\PY{n}{y\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+            
+                \PY{n}{u\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}
+                \PY{n}{v\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+                \PY{n}{u} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                \PY{n}{v} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{+}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}                   
+        
+        \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3} \PY{o+ow}{and} \PY{n}{check\PYZus{}idx}\PY{p}{:}
+            
+            \PY{n}{x\PYZus{}p} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{y\PYZus{}p} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{k}{if} \PY{n}{check\PYZus{}idx}\PY{p}{:}
+            
+                \PY{n}{diag\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}
+                \PY{n}{diag\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0} 
+            
+                \PY{k}{if} \PY{n}{diag\PYZus{}1}\PY{p}{:}
+                
+                    \PY{n}{wall\PYZus{}orientation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{thickness} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            
+                    \PY{n}{y\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                    \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+            
+                    \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{n}{x\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                    \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}0}\PY{o}{+}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{+}\PY{p}{(}\PY{n}{x\PYZus{}0}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                
+                    \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+                
+                        \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        
+                        \PY{k}{if} \PY{n}{y\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}p} \PY{o}{\PYZlt{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                
+                            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+                            \PY{k}{return} \PY{n}{vel}
+        
+                    \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+                
+                        \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+        
+                        \PY{k}{if} \PY{n}{y\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}p} \PY{o}{\PYZgt{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                
+                            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+                            \PY{k}{return} \PY{n}{vel}
+            
+                    \PY{k}{else}\PY{p}{:}
+            
+                        \PY{k}{return} \PY{k+kc}{None}
+            
+                    \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+            
+                    \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{x\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{p}{(}\PY{n}{y\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+            
+                    \PY{c+c1}{\PYZsh{} Velocity in coordinates parallel to diagonal boundary transformation}
+            
+                    \PY{n}{u\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}
+                    \PY{n}{v\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+                    \PY{n}{u} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{+}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                    \PY{n}{v} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+        
+                \PY{k}{elif} \PY{n}{diag\PYZus{}2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:} 
+            
+                    \PY{n}{wall\PYZus{}orientation} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{thickness} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy\PYZus{}data}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            
+                    \PY{n}{y\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                    \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+            
+                    \PY{n}{x\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}p}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}0}\PY{p}{)}\PY{o}{+}\PY{n}{x\PYZus{}p}\PY{o}{+}\PY{n}{x\PYZus{}0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                    \PY{n}{y\PYZus{}wall} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{y\PYZus{}p}\PY{o}{+}\PY{n}{y\PYZus{}0}\PY{p}{)}\PY{o}{+}\PY{n}{x\PYZus{}p}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}0}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            
+                    \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+            
+                        \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                
+                        \PY{k}{if} \PY{n}{y\PYZus{}p}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p} \PY{o}{\PYZgt{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                
+                            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+                            \PY{k}{return} \PY{n}{vel}
+                    
+                    \PY{k}{elif} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{defined\PYZus{}domain}\PY{p}{[}\PY{n}{idx\PYZus{}y}\PY{p}{,} \PY{n}{idx\PYZus{}x}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+                    
+                        \PY{n}{x\PYZus{}boundary\PYZus{}layer} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{x\PYZus{}wall} \PY{o}{+} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{y\PYZus{}wall} \PY{o}{\PYZhy{}} \PY{n}{thickness}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            
+                        \PY{k}{if} \PY{n}{y\PYZus{}p}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p} \PY{o}{\PYZlt{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                
+                            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                    
+                            \PY{k}{return} \PY{n}{vel}
+                    
+                    \PY{k}{else}\PY{p}{:}
+                        
+                        \PY{k}{return} \PY{k+kc}{None}
+                    
+                    \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}velocity\PYZus{}domain}\PY{p}{(}\PY{n}{x\PYZus{}boundary\PYZus{}layer}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+            
+                    \PY{c+c1}{\PYZsh{} Coordinate transformation            }
+                    \PY{n}{y\PYZus{}tilde} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{x\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{p}{(}\PY{n}{y\PYZus{}wall}\PY{o}{\PYZhy{}}\PY{n}{y\PYZus{}p}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+            
+                    \PY{n}{u\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}
+                    \PY{n}{v\PYZus{}new} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{y\PYZus{}tilde}\PY{o}{/}\PY{n}{thickness}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+                    \PY{n}{u} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{\PYZhy{}}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                    \PY{n}{v} \PY{o}{=} \PY{p}{(}\PY{n}{u\PYZus{}new}\PY{o}{+}\PY{n}{v\PYZus{}new}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+                
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{k}{return} \PY{k+kc}{None}
+    
+        \PY{n}{vel} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{n}{v}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{return} \PY{n}{vel}
+\end{Verbatim}
+\end{tcolorbox}
+\section{Computation of Lagrangian particle trajectories}\subsection{$4^{th}$-order Runge Kutta integration}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}RK4}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{dt}\PY{p}{)}\PY{p}{:}
+    
+        \PY{c+c1}{\PYZsh{} Define starting point.}
+        \PY{n}{x1} \PY{o}{=} \PY{n}{x}
+        \PY{n}{t1} \PY{o}{=} \PY{n}{t}
+        
+        \PY{n}{vel} \PY{o}{=} \PY{k+kc}{True}
+        
+        \PY{c+c1}{\PYZsh{} If x is outside defined domain \PYZhy{}\PYZhy{}\PYZgt{} vel is None \PYZhy{}\PYZhy{}\PYZgt{} \PYZus{}RK4 returns \PYZdq{}None\PYZdq{} and integration will stop.}
+        \PY{k}{while} \PY{n}{vel} \PY{o+ow}{is} \PY{o+ow}{not} \PY{k+kc}{None}\PY{p}{:}
+    
+            \PY{c+c1}{\PYZsh{} Compute velocity at the beginning of the time\PYZhy{}step}
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{t1}\PY{p}{)}
+        
+            \PY{n}{k1} \PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{vel}
+    
+            \PY{c+c1}{\PYZsh{} Update position and time at the first midpoint.}
+            \PY{n}{x2} \PY{o}{=} \PY{n}{x1} \PY{o}{+} \PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{k1}
+            \PY{n}{t2} \PY{o}{=} \PY{n}{t} \PY{o}{+} \PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{dt}
+    
+            \PY{c+c1}{\PYZsh{} Compute velocity at the first midpoint.}
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x2}\PY{p}{,} \PY{n}{t2}\PY{p}{)}
+            \PY{n}{k2} \PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{vel}
+
+            \PY{c+c1}{\PYZsh{} Update position and time at the second midpoint.}
+            \PY{n}{x3} \PY{o}{=} \PY{n}{x1} \PY{o}{+} \PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{k2}
+            \PY{n}{t3} \PY{o}{=} \PY{n}{t} \PY{o}{+} \PY{o}{.}\PY{l+m+mi}{5} \PY{o}{*} \PY{n}{dt}
+    
+            \PY{c+c1}{\PYZsh{} Compute velocity at the second midpoint.}
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x3}\PY{p}{,} \PY{n}{t3}\PY{p}{)}
+            \PY{n}{k3} \PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{vel}
+    
+            \PY{c+c1}{\PYZsh{} Update position and time at the first midpoint.}
+            \PY{n}{x4} \PY{o}{=} \PY{n}{x1} \PY{o}{+} \PY{n}{k3}
+            \PY{n}{t4} \PY{o}{=} \PY{n}{t} \PY{o}{+} \PY{n}{dt}
+    
+            \PY{c+c1}{\PYZsh{} Compute velocity at the end of the time\PYZhy{}step.}
+            \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x4}\PY{p}{,} \PY{n}{t4}\PY{p}{)}
+            \PY{n}{k4} \PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{vel}
+    
+            \PY{c+c1}{\PYZsh{} define list for velocity and positions of particle}
+            \PY{n}{vel\PYZus{}update} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{x\PYZus{}update} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+            \PY{c+c1}{\PYZsh{} Compute velocity using weighted averages of RK4 for every velocity\PYZhy{}component.}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Update velocity of particles}
+                \PY{n}{vel\PYZus{}update}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{/} \PY{l+m+mf}{6.0}\PY{o}{*}\PY{p}{(}\PY{n}{k1}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{k2}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{k3}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{k4}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{dt}\PY{p}{)}
+    
+            \PY{c+c1}{\PYZsh{} Integration x \PYZlt{}\PYZhy{}\PYZhy{} x + v*dt}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Update position of particles}
+                \PY{n}{x\PYZus{}update}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{vel\PYZus{}update}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{dt}\PY{p}{)}
+    
+            \PY{n}{vel\PYZus{}update} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{vel\PYZus{}update}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{x\PYZus{}update} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{x\PYZus{}update}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+    
+            \PY{k}{return} \PY{n}{x\PYZus{}update}\PY{p}{,} \PY{n}{vel\PYZus{}update}
+        
+        \PY{k}{return} \PY{k+kc}{None}\PY{p}{,} \PY{k+kc}{None}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Single Lagrangian particle trajectories}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}trajectory}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+        
+        \PY{c+c1}{\PYZsh{} Initialize trajectory array.}
+        \PY{n}{trajectory} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lenT}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Initialize velocity array}
+        \PY{n}{velocity} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lenT}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{dt} \PY{o}{=} \PY{n}{time}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{time}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    
+        \PY{c+c1}{\PYZsh{} Integration of trajectory using RK4}
+        \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{trajectory}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+        
+            \PY{c+c1}{\PYZsh{} Integrate using 4th\PYZhy{}order Runge\PYZhy{}Kutta.                     }
+            \PY{n}{x}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}RK4}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{dt}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} Periodic boundary conditions.}
+            \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{periodic}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                
+                \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmax} \PY{o+ow}{or} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmin}\PY{p}{:}
+                
+                    \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmin}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmax}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmin}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{xmin}
+                
+            \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{periodic}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                
+                \PY{k}{if} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymax} \PY{o+ow}{or} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymin}\PY{p}{:}
+                
+                    \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymin}\PY{p}{)} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymax}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymin}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{ymin}
+            
+            \PY{c+c1}{\PYZsh{} If x is \PYZdq{}None\PYZdq{} \PYZhy{}\PYZhy{}\PYZgt{} trajectory outside domain \PYZhy{}\PYZhy{}\PYZgt{} integration stops.}
+            \PY{k}{if} \PY{n}{x} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+                
+                \PY{c+c1}{\PYZsh{}print(\PYZdq{}WARNING: Trajectory outside of defined domain \PYZhy{}\PYZhy{}\PYZgt{} Integration stopped.\PYZdq{})}
+                \PY{n}{trajectory}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+                \PY{n}{velocity}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+                \PY{k}{break}
+                                
+            \PY{n}{velocity}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{vel}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                
+        \PY{k}{return} \PY{n}{trajectory}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{velocity}\PY{o}{.}\PY{n}{T}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Lagrangian particle trajectories on a grid}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}trajectory\PYZus{}grid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=================Trajectories over meshgrid=================}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{parallelization}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{trajectories} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{velocities} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{)}\PY{p}{:}
+                                          
+                \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                    
+                \PY{n}{trajectories}\PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{velocities}\PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}trajectory}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}
+                
+            \PY{k}{return} \PY{n}{trajectories}\PY{p}{,} \PY{n}{velocities}
+        
+        \PY{n}{res} \PY{o}{=} \PY{n}{Parallel}\PY{p}{(}\PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Ncores}\PY{p}{,} \PY{n}{verbose} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{(}\PY{n}{delayed}\PY{p}{(}\PY{n}{parallelization}\PY{p}{)}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{tqdm}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{trajectory\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{res}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{velocity\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{res}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Flow map}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}Fmap}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+    
+        \PY{n}{x} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}trajectory}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{time}\PY{p}{)}
+    
+        \PY{n}{F\PYZus{}t0\PYZus{}tN} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+    
+        \PY{k}{return} \PY{n}{F\PYZus{}t0\PYZus{}tN}
+\end{Verbatim}
+\end{tcolorbox}
+\subsection{Gradient of flow map}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}grad\PYZus{}Fmap}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+    
+        \PY{c+c1}{\PYZsh{} Initialized gradient of flow map}
+        \PY{n}{grad\PYZus{}Fmap} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+    
+        \PY{c+c1}{\PYZsh{} Array containing vectors for grid\PYZhy{}spacing}
+        \PY{n}{delta\PYZus{}aux} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{aux\PYZus{}grid\PYZus{}spacing}\PY{p}{)}
+    
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}            
+                \PY{n}{x\PYZus{}aux0} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{x0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Fmap}\PY{p}{(}\PY{n}{x\PYZus{}aux0}\PY{p}{,} \PY{n}{time}\PY{p}{)}
+                \PY{n}{x\PYZus{}aux1} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{x1} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}Fmap}\PY{p}{(}\PY{n}{x\PYZus{}aux1}\PY{p}{,} \PY{n}{time}\PY{p}{)}
+                \PY{n}{grad\PYZus{}Fmap}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{x1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{x0}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{i}\PY{p}{]}\PY{p}{)}
+    
+        \PY{k}{return} \PY{n}{grad\PYZus{}Fmap}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}grad\PYZus{}Fmap\PYZus{}aux\PYZus{}grid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                                 
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{)}\PY{p}{:}
+                
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{)}\PY{p}{:}
+    
+                \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                        
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:} \PY{p}{]} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}grad\PYZus{}Fmap}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}
+            
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{aux\PYZus{}grid} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
+        
+        \PY{k}{if} \PY{n}{aux\PYZus{}grid} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+            
+            \PY{k}{if} \PY{n+nb}{hasattr}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{trajectory\PYZus{}grid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}trajectory\PYZus{}grid}\PY{p}{(}\PY{p}{)}
+        
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=================gradient of Flow map w/ meshgrid=================}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+            \PY{n}{Fmap\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+    
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{)}\PY{p}{:}
+        
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{)}\PY{p}{:}
+                    
+                    \PY{n}{Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{trajectory\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                    
+                    \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}
+                        
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{c}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{c}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dx}\PY{p}{)}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{c}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{c}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{c}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dy}\PY{p}{)}
+                        
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=================gradient of Flow map w/ mauxiliary grid=================}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            
+            \PY{k}{def} \PY{n+nf}{parallelization}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+                
+                \PY{n}{grad\PYZus{}Fmap} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+                
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{)}\PY{p}{:}
+                    
+                    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Y\PYZus{}domain}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                
+                    \PY{n}{grad\PYZus{}Fmap}\PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}grad\PYZus{}Fmap\PYZus{}aux\PYZus{}grid}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{time}\PY{p}{)}
+                
+                \PY{k}{return} \PY{n}{grad\PYZus{}Fmap}
+            
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{Parallel}\PY{p}{(}\PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Ncores}\PY{p}{)}\PY{p}{(}\PY{n}{delayed}\PY{p}{(}\PY{n}{parallelization}\PY{p}{)}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{tqdm}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}
+\end{Verbatim}
+\end{tcolorbox}
+\section{Computation of tensors and gradients}\subsection{Cauchy-green-strain tensor}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}cauchy\PYZus{}green\PYZus{}strain}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        
+        \PY{k}{if} \PY{n+nb}{hasattr}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{grad\PYZus{}Fmap\PYZus{}grid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                  
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{(}\PY{p}{)}
+            
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{=================Cauchy\PYZhy{}Green\PYZhy{}Strain tensors=================}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{B} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{C} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{B}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+            
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}Y}\PY{p}{)}\PY{p}{:}
+                
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{len\PYZus{}X}\PY{p}{)}\PY{p}{:}
+                    
+                \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Compute left Cauchy\PYZhy{}Green\PYZhy{}Strain tensor}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                    
+                \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Compute right Cauchy\PYZhy{}Green\PYZhy{}Strain tensor}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{grad\PYZus{}Fmap\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}
+                    
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{B}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{C}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}grad\PYZus{}vel}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{n}{grad\PYZus{}vel} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{delta\PYZus{}aux} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{aux\PYZus{}grid\PYZus{}spacing}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{dim}\PY{p}{)}\PY{p}{:}            
+                
+                \PY{n}{x\PYZus{}aux0} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{v0} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x\PYZus{}aux0}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                
+                \PY{n}{x\PYZus{}aux1} \PY{o}{=} \PY{n}{x}\PY{o}{+}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                \PY{n}{v1} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}dxdt}\PY{p}{(}\PY{n}{x\PYZus{}aux1}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+                
+                \PY{k}{if} \PY{n}{v1} \PY{o+ow}{is} \PY{k+kc}{None} \PY{o+ow}{or} \PY{n}{v0} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+                    
+                    \PY{n}{grad\PYZus{}vel}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+                    
+                \PY{k}{else}\PY{p}{:}
+                
+                    \PY{n}{grad\PYZus{}vel}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{v1}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{v0}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{delta\PYZus{}aux}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{i}\PY{p}{]}\PY{p}{)}
+                
+        \PY{k}{return} \PY{n}{grad\PYZus{}vel}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}vorticity\PYZus{}tensor}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n}{grad\PYZus{}vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}grad\PYZus{}vel}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+    
+        \PY{k}{return} \PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{p}{(}\PY{n}{grad\PYZus{}vel}\PY{o}{\PYZhy{}}\PY{n}{grad\PYZus{}vel}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}spin\PYZus{}tensor}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n}{grad\PYZus{}vel} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}grad\PYZus{}vel}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        
+        \PY{k}{return} \PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{p}{(}\PY{n}{grad\PYZus{}vel}\PY{o}{+}\PY{n}{grad\PYZus{}vel}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}eigenvalues\PYZus{}and\PYZus{}eigenvectors}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{A}\PY{p}{)}\PY{p}{:}
+        
+        \PY{n}{path\PYZus{}parent} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{dirname}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{n}{sys}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{path\PYZus{}parent}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/General}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{k+kn}{from} \PY{n+nn}{ipynb}\PY{n+nn}{.}\PY{n+nn}{fs}\PY{n+nn}{.}\PY{n+nn}{defs}\PY{n+nn}{.}\PY{n+nn}{eigenvalues\PYZus{}eigenvectors} \PY{k+kn}{import} \PY{n}{eigenvalues\PYZus{}eigenvectors\PYZus{}2D}
+        
+        \PY{k}{if} \PY{n}{A}\PY{o}{.}\PY{n}{ndim} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+            
+            \PY{n}{lamda}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{n}{eigenvalues\PYZus{}eigenvectors\PYZus{}2D}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{incompressible}\PY{p}{)}
+            
+            \PY{n}{lambda\PYZus{}min} \PY{o}{=} \PY{n}{lamda}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{lambda\PYZus{}max} \PY{o}{=} \PY{n}{lamda}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{n}{v\PYZus{}max} \PY{o}{=} \PY{n}{v}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{v\PYZus{}min} \PY{o}{=} \PY{n}{v}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n}{lambda\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n}{lambda\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n}{v\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            \PY{n}{v\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                    
+                        \PY{n}{lamda}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{n}{eigenvalues\PYZus{}eigenvectors\PYZus{}2D}\PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}
+                        
+                        \PY{n}{lambda\PYZus{}min}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{lamda}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                        \PY{n}{lambda\PYZus{}max}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{lamda}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                        
+                        \PY{n}{v\PYZus{}min}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{v}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                        \PY{n}{v\PYZus{}max}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{v}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                        
+        \PY{k}{return} \PY{n}{lambda\PYZus{}min}\PY{p}{,} \PY{n}{lambda\PYZus{}max}\PY{p}{,} \PY{n}{v\PYZus{}min}\PY{p}{,} \PY{n}{v\PYZus{}max}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PY{k}{def} \PY{n+nf}{\PYZus{}svd}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{A}\PY{p}{)}\PY{p}{:}  
+        
+        \PY{n}{path\PYZus{}parent} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{dirname}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{n}{sys}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{path\PYZus{}parent}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/General}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k+kn}{from} \PY{n+nn}{ipynb}\PY{n+nn}{.}\PY{n+nn}{fs}\PY{n+nn}{.}\PY{n+nn}{defs}\PY{n+nn}{.}\PY{n+nn}{singular\PYZus{}value\PYZus{}decomposition} \PY{k+kn}{import} \PY{n}{singular\PYZus{}value\PYZus{}decomposition\PYZus{}2D}
+        
+        \PY{k}{if} \PY{n}{A}\PY{o}{.}\PY{n}{ndim} \PY{o}{==} \PY{l+m+mi}{2}\PY{p}{:}
+            
+            \PY{n}{U}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{V} \PY{o}{=} \PY{n}{singular\PYZus{}value\PYZus{}decomposition\PYZus{}2D}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+            
+            \PY{n}{sigma\PYZus{}min} \PY{o}{=} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{sigma\PYZus{}max} \PY{o}{=} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{n}{u\PYZus{}min} \PY{o}{=} \PY{n}{U}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{u\PYZus{}max} \PY{o}{=} \PY{n}{U}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{n}{v\PYZus{}min} \PY{o}{=} \PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{v\PYZus{}max} \PY{o}{=} \PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+            
+        \PY{k}{else}\PY{p}{:}
+            
+            \PY{n}{sigma\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n}{sigma\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n}{u\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            \PY{n}{u\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n}{v\PYZus{}max} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            \PY{n}{v\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{A}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                    
+                        \PY{n}{U}\PY{p}{,} \PY{n}{S}\PY{p}{,} \PY{n}{V} \PY{o}{=} \PY{n}{singular\PYZus{}value\PYZus{}decomposition\PYZus{}2D}\PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}
+                        
+                        \PY{n}{sigma\PYZus{}min}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                        \PY{n}{sigma\PYZus{}max}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                        
+                        \PY{n}{u\PYZus{}min}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{U}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                        \PY{n}{u\PYZus{}max}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{U}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+
+                        \PY{n}{v\PYZus{}min}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+                        \PY{n}{v\PYZus{}max}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+                        
+        \PY{k}{return} \PY{n}{sigma\PYZus{}min}\PY{p}{,} \PY{n}{sigma\PYZus{}max}\PY{p}{,} \PY{n}{u\PYZus{}min}\PY{p}{,} \PY{n}{u\PYZus{}max}\PY{p}{,} \PY{n}{v\PYZus{}min}\PY{p}{,} \PY{n}{v\PYZus{}max}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
