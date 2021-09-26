@@ -1,8 +1,6 @@
 # Jupyter-LCS
 
-This repository contains the entire collection of jupyter notebooks .
-
-![cover image](notebooks/figures/PDSH-cover.png)
+This repository contains the entire collection of jupyter notebooks for extracting Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
 
 ## How to Use this Book
 
