@@ -16,7 +16,7 @@ The handbook was written and tested with Python 3.7.
 
 The book introduces the core algorithms essential for computing Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
 
-Familiarity with Python and its core libraries ([NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed. For a quick introduction to the libraries and the programming language see [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython)
+Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed. For a quick introduction to the programming language see [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython)
 
 
 ## Software
