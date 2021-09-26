@@ -6,7 +6,7 @@ This repository contains the entire collection of jupyter notebooks for extracti
 
 - Read the book in its entirety online at ... 
 
-- Run the code using the Jupyter notebooks available in this repository's [notebooks](2D) directory.
+- Run the code using the Jupyter notebooks available in this repository's [notebooks](LCS_OECS) directory.
 
 ## About
 
@@ -27,15 +27,8 @@ Start by installing Anaconda (or Miniconda). For a complete installation guideli
 
 Next, clone this project by opening a terminal and typing the following commands (do not type the first $ signs on each line, they just indicate that these are terminal commands):
 
-It is recommended to use Anaconda
+It is recommended to use Anaconda. Users can follow the [Installation-guideline](Installation.md) in this repository.
 
-```
-
-To create a stand-alone environment named ``LCS`` with Python 3.7 and all the required package versions, run the following at the command-line:
-
-```
-$ conda create -n LCS python=3.7 --file requirements.txt
-```
 You can read more about using conda environments in the [Managing Environments](http://conda.pydata.org/docs/using/envs.html) section of the conda documentation.
 
 ## License
