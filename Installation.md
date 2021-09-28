@@ -9,7 +9,7 @@ Next, clone this repository by opening a terminal and typing the following comma
     $ git clone https://github.com/Encinas97/jupyter-LCS.git
     $ cd LCS_OECS
 
-If you do not want to install git, you can instead download [master.zip](https://github.com/Encinas97/jupyter-LCS/archive/LCS_OECS.zip), unzip it, rename the resulting directory to `LCS_OECS` and move it to your development directory. (to be done...)
+If you do not want to install git, you can instead unzip the folder, rename the resulting directory to `LCS_OECS` and move it to your development directory.
 
 ## Install Anaconda
 Next, you will need Python 3 and a bunch of Python libraries. The simplest way to install these is to [download and install Anaconda](https://www.anaconda.com/distribution/), which is a great cross-platform Python distribution for scientific computing. It comes bundled with many scientific libraries, including NumPy, Pandas, Matplotlib, Scikit-Learn and much more, so it's quite a large installation. If you prefer a lighter weight Anaconda distribution, you can [install Miniconda](https://docs.conda.io/en/latest/miniconda.html), which contains the bare minimum to run the `conda` packaging tool. You should install the latest version of Anaconda (or Miniconda) available.
