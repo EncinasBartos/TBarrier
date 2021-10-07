@@ -4,7 +4,7 @@ This repository contains a collection of algorithms which aim to extract Lagrang
 
 ## How to Use this Book
 
-- Run the code using the Jupyter notebooks available in this repository's [notebooks](TBarrier) directory.
+- Run the code using the Jupyter notebooks available in this repository's [TBarrier](TBarrier) directory.
 
 ## About
 
