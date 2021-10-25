@@ -1,12 +1,10 @@
-# Jupyter-LCS
+# TBARRIER
 
-This repository contains the entire collection of jupyter notebooks for extracting Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
+This repository contains a collection of jupyter notebooks for extracting Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
 
 ## How to Use this Book
 
-- Read the book in its entirety online at ... 
-
-- Run the code using the Jupyter notebooks available in this repository's [notebooks](LCS_OECS) directory.
+- Run the code using the Jupyter notebooks available in this repository's [notebooks](TBarrier) directory.
 
 ## About
 
@@ -14,7 +12,7 @@ The handbook was written and tested with Python 3.7.
 
 The book introduces the core algorithms essential for computing Lagrangian Coherent Structures (LCS) and Objective Eulerian Coherent Structures (OECS) from discrete velocity data.
 
-Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed. For a quick introduction to the programming language see [A Whirlwind Tour of Python](https://github.com/jakevdp/WhirlwindTourOfPython)
+Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed.
 
 
 ## Software
