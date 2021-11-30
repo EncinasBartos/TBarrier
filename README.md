@@ -17,11 +17,11 @@ Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy
 
 ## Software
 
-The code in the book was tested with Python 3.7.
+The jupyter notebooks were tested with Python 3.7.
 
 The libraries used to run this book are listed in [requirements.txt](requirements.txt).
 
-Start by installing Anaconda (or Miniconda). For a complete [Installation-guideline](Installation.md) we refer to the 'Installation.md'in this repository.
+For a complete [Installation-guideline](Installation.md) we refer to the 'Installation.md'in this repository.
 
 You can read more about using conda environments in the [Managing Environments](http://conda.pydata.org/docs/using/envs.html) section of the conda documentation.
 
