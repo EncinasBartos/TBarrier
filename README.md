@@ -4,7 +4,7 @@ TBarrier notebooks contains a series of jupyter notebooks that guide you  throug
 
 ## How to Use this Book
 
-- Run the code using the Jupyter notebooks available in this repository's [notebooks](TBarrier) directory.
+- Run the code using the Jupyter notebooks available in this repository's [TBarrier](TBarrier) directory.
 
 ## About
 
