@@ -1,6 +1,6 @@
 # TBarrier Notebook
 
-TBarrier notebooks contains a series of jupyter notebooks that guide you  through methods used to extract transport barriers from discrete velocity data
+TBarrier notebooks contains a series of jupyter notebooks that guide you  through methods used to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data
 
 ## How to Use this Book
 
