@@ -1,0 +1,2781 @@
+#LyX file created by tex2lyx 2.3
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin /Users/enalex/OneDrive/
+\textclass article
+\begin_preamble
+%codification of the document
+% reference-package
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+
+
+%Here begins the body of the document
+
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks 0
+\pdf_bookmarksnumbered 0
+\pdf_bookmarksopen 0
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks 0
+\pdf_pdfborder 0
+\pdf_colorlinks 0
+\pdf_backref section
+\pdf_pdfusetitle 0
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+TBarrier notebooks
+\end_layout
+
+\begin_layout Author
+Alex P. Encinas Bartos and George Haller
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+TBarrier
+\shape default
+ contains a series of jupyter notebooks that guide you through methods used to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ The collection of notebooks implement the methods explained in the book 
+\begin_inset CommandInset href
+LatexCommand href
+name "Transport Barriers and Coherent Structures in Flow Data"
+target "https://github.com/EncinasBartos/TBarrier"
+literal "false"
+
+\end_inset
+
+written by George Haller. We address both two-dimensional and three dimensional steady/unsteady velocity fields. Hence, 
+\shape italic
+TBarrier
+\shape default
+ is designed for fluid dynamicists in general, with a special focus on oceanographers and CFD analysts.
+\end_layout
+
+\begin_layout Subsection
+Programming Language
+\end_layout
+
+\begin_layout Standard
+The jupyter notebooks are written in 
+\begin_inset CommandInset href
+LatexCommand href
+name "Python"
+target "https://www.python.org"
+literal "false"
+
+\end_inset
+
+. It was, however, designed in a way so that it could easily be translated into other languages such as 
+\begin_inset CommandInset href
+LatexCommand href
+name "Julia"
+target "https://julialang.org"
+literal "false"
+
+\end_inset
+
+and 
+\begin_inset CommandInset href
+LatexCommand href
+name "Matlab"
+target "https://www.mathworks.com/products/matlab.html"
+literal "false"
+
+\end_inset
+
+. Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab: language"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ includes a qualitative (and hence subjective) comparison of Python, Julia and Matlab. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular 
+<lyxtabular version="3" rows="7" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="none" valignment="top" width="3cm">
+<column alignment="none" valignment="top" width="2cm">
+<column alignment="none" valignment="top" width="2cm">
+<column alignment="none" valignment="top" width="2cm">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Standard
+Qualitative Comparison of programming languages
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Feature 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Python 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Julia 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Matlab 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Access 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Open Source 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Open Source 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{red!25}
+\end_layout
+
+\end_inset
+
+ Closed Source
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Support from Community 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Good 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{red!25}
+\end_layout
+
+\end_inset
+
+ Bad 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{yellow!25}
+\end_layout
+
+\end_inset
+
+ Moderate 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+ODE solver 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{red!25}
+\end_layout
+
+\end_inset
+
+ Bad 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Good 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{yellow!25}
+\end_layout
+
+\end_inset
+
+ Moderate 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Computational speed 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{yellow!25}
+\end_layout
+
+\end_inset
+
+ Moderate 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Good 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{yellow!25}
+\end_layout
+
+\end_inset
+
+ Moderate 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+User friendly 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{green!25}
+\end_layout
+
+\end_inset
+
+ Good 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{red!25}
+\end_layout
+
+\end_inset
+
+ Bad 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+cellcolor{yellow!25}
+\end_layout
+
+\end_inset
+
+ Moderate 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Qualitative Comparison of programming languages
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab: language"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The decision on the programming language was based on various factors. Although computational speed is definitely a criterion that has to be considered when implementing the code, other factors such as the ease of access, user friendliness and versatility of the programming language have to be included. Although Python seems to be behind Julia and Matlab in terms of computational speed (especially when solving a large number of ODEs), it outperforms them when it comes to user friendliness. Apart from academia, Python is also widely used in the industry as it is open source. Due to the limitations on the ODE solver, the computational speed of the computations in the 
+\shape italic
+TBarrier
+\shape default
+ notebook is lower compared to Matlab or Julia. However, the main purpose of the notebook series is to explain the methods highlighted in the book with clarity on a very user friendly and easily accessible platform.
+\end_layout
+
+\begin_layout Subsection
+Existing Software
+\end_layout
+
+\begin_layout Standard
+We highlight three major publicly available existing software packages designed to extract transport barriers from discrete velocity data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ The toolbox 
+\shape italic
+
+\begin_inset CommandInset href
+LatexCommand href
+name "CoherentStructures.jl"
+target "https://coherentstructures.github.io/CoherentStructures.jl/stable/"
+literal "false"
+
+\end_inset
+
+
+\shape default
+ has been developed in Oliver Junge's research group at TUM, Germany. It is written in Julia and computationally very efficient. It focuses, however, principally on advective transport barriers in two dimensional flows and does not explicitly address methods for computing diffusive, stochastic and active barriers. 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Secondly, we point out the 
+\shape italic
+
+\begin_inset CommandInset href
+LatexCommand href
+name "LCStool"
+target "https://github.com/haller-group/LCStool"
+literal "false"
+
+\end_inset
+
+
+\shape default
+ and the 
+\shape italic
+
+\begin_inset CommandInset href
+LatexCommand href
+name "BarrierTool"
+target "https://github.com/haller-group/BarrierTool"
+literal "false"
+
+\end_inset
+
+
+\shape default
+ developed by 
+\begin_inset CommandInset href
+LatexCommand href
+name "George Haller's research group"
+target "http://georgehaller.com/"
+literal "false"
+
+\end_inset
+
+at ETHZ. Both tools are written in Matlab. The former tool focuses on the extraction of advective Lagrangian Coherent Structures from two-dimensional discrete velocity data, whereas the latter includes a GUI addressing both advective and diffusive Lagrangian and Eulerian transport barriers in two-dimensional flows.
+\end_layout
+
+\begin_layout Section
+Overview 
+\shape italic
+TBarrier
+\shape default
+ notebooks
+\end_layout
+
+\begin_layout Standard
+The notebooks are stored in the 
+\begin_inset CommandInset href
+LatexCommand href
+name "\textit{\underline{TBarrier}}"
+target "https://github.com/EncinasBartos/TBarrier"
+literal "true"
+
+\end_inset
+
+repository on github. By clicking on the underlined headers you are redirected to the corresponding folder on the github repository. 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{2D}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{data}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{AVISO}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/AVISO"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/AVISO
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{BickleyJet}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/BickleyJet"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/BickleyJet
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{Isotropic two-dimensional turbulence}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Turbulence"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Turbulence
+\size default
+
+\color inherit
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{demos}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{AdvectiveBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{FTLE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FTLE"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Hyperbolic LCS from the finite-time Lyapunov exponent} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ FTLE-field applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FTLE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{PRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PRA"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Elliptic LCSs from the polar rotation angle} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ PRA-field applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{LAVD}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/LAVD"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Elliptic LCSs from the Lagrangian-averaged vorticity deviation} $
+\end_inset
+
+ and 
+\begin_inset Formula $ \textit{ LAVD for 2D flows} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ LAVD-field applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/LAVD
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{TRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TRA"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Quasi-objective, single-trajectory diagnostics for transport
+barriers} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ TRA-field applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{TSE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TSE"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Quasi-objective, single-trajectory diagnostics for transport
+barriers} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ TSE-field applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TSE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{HyperbolicLCS}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicLCS"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Local variational theory of hyperbolic LCS} $
+\end_inset
+
+ 
+\begin_inset Formula $ \textit{Hyperbolic LCSs in 2D flows} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Hyperbolic LCS from tensorlines (shrinklines/stretchlines) of the Cauchy-Green strain tensor applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicLCS
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{HyperbolicOECS}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicOECS"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Shearless OECSs and objective saddle points in 2D flows} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Hyperbolic OECS from (local) tensorlines launched from objective saddle points applied to AVISO. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicOECS
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{EllipticLCS}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticLCS"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Computing elliptic LCSs as closed null-geodesics} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Elliptic LCS as closed null geodesics from the Cauchy-Green strain tensor applied to AVISO, Bickley and 2D turbulence data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticLCS
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{EllipticOECS}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticOECS"
+literal "true"
+
+\end_inset
+
+: (
+\begin_inset Formula $ \textit{Computing elliptic LCSs as closed null-geodesics} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Elliptic OECS as closed null geodesics from the rate of strain tensor applied to AVISO. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticOECS
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{FastTensorlineComputation}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FastTensorlineComputation"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Computation of tensorlines using the newly proposed algorithm with the re-parametrization of the eigenvectors from AVISO data. The Fast Tensorline Computation (FTC) is applied to the rate of strain tensor to (locally) extract hyperbolic OECS away from tensorline singularities.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FastTensorlineComputation
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{PoincareMap}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PoincareMap"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Poincaré maps} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Poincare map applied to periodic Bickley-jet. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PoincareMap
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{DiffusionBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Here, we discuss diffusive Lagrangian and Eulerian transport barriers. The analysis and algorithm are similar to the ones discussed for the advective Barriers. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{DBS}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/DBS"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{ Unconstrained diffusion barriers in 2D flows} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Diffusion Barrier Sensitivity (DBS) applied to AVISO and Bickley data 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/DBS
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{EllipticLagrangianDiffusionBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticLagrangianDiffusionBarriers"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{ Unconstrained diffusion barriers in 2D flows} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Elliptic Lagrangian Diffusion Barriers (using null-geodesics algorithm) extracted from AVISO and Bickley data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Closed tensorlines (using the null-geodesics algorithm) computed from 
+\begin_inset Formula \begin{equation}
+\mathbf{x}_0' = \mathbf{\eta_{\mathcal{T}_0}^{\pm}}(\mathbf{x}_0) = \sqrt{\frac{\overline{\lambda}_2(\mathbf{x}_0)-\mathcal{T}_0}{\overline{\lambda}_2(\mathbf{x}_0)-\overline{\lambda}_1(\mathbf{x}_0)}} \mathbf{\xi}_1(\mathbf{x}_0) \pm \sqrt{\frac{\mathcal{T}_0-\overline{\lambda}_1(\mathbf{x}_0)}{\overline{\lambda}_2(\mathbf{x}_0)-\overline{\lambda}_1(\mathbf{x}_0)}}(\mathbf{x}_0)\mathbf{\xi}_2(\mathbf{x}_0),
+\label{eq: diffusive_tensorlines}
+\end{equation}
+\end_inset
+
+with 
+\begin_inset Formula $ \overline{\lambda_1} (\mathbf{x}_0) \leq \mathcal{T}_0 \leq   \overline{\lambda_2} (\mathbf{x}_0) $
+\end_inset
+
+. 
+\begin_inset Formula $ \mathbf{\xi}_1(\mathbf{x}_0) $
+\end_inset
+
+ and 
+\begin_inset Formula $ \mathbf{\xi}_2(\mathbf{x}_0) $
+\end_inset
+
+ are respectively the eigenvectors associated to the eigenvalues 
+\begin_inset Formula $ \overline{\lambda_1} (\mathbf{x}_0) $
+\end_inset
+
+ and 
+\begin_inset Formula $ \overline{\lambda_2} (\mathbf{x}_0) $
+\end_inset
+
+ of the averaged diffusive Cauchy Green strain tensor 
+\begin_inset Formula $  \overline{C_d}_{t_0}^{t_N}(\mathbf{x}_0)$
+\end_inset
+
+. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticLagrangianDiffusionBarriers
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{EllipticEulerianDiffusionBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticEulerianDiffusionBarriers"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{ Unconstrained diffusion barriers in 2D flows} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Elliptic Eulerian Diffusion Barriers extracted from AVISO and Bickley data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ This is the Eulerian counterpart to equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq: diffusive_tensorlines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+. There is, however, no mention of it in the book and no figures. Stergios, computed, it however in the BarrierTool and it has been mentioned in the original paper (see remark 1 in http://georgehaller.com/reprints/mbarriers.pdf). That is why I thought I should also include it.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticEulerianDiffusionBarriers
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{Tensorlines}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/Tensorlines"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Tensorlines computed from short and open segments of equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq: diffusive_tensorlines"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and extracted from AVISO . In the book, the computation of these short tensorline segments has been applied to HYCOM-data when considering compressible flows. I would apply this algorithm to AVISO data (as I am considering only incompressible flows). 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/Tensorlines
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{StochasticBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/StochasticBarriers"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Transport barriers in stochastic velocity fields} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Barriers in stochastic velocity field extracted from AVISO data. We specifically focus on elliptic Lagrangian stochastic Barriers. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/StochasticBarriers
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{ActiveBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{2D homogeneous, isotropic turbulence} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Active barriers extracted from the two-dimensional turbulence simulation. Lagrangian and Eulerian active barriers to vorticity and linear momentum extracted using the active FTLE, active PRA, active TSE, active TRA and the Hamiltonian based formulation. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aFTLE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aFTLE"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Active FTLE (aFTLE) and active TSE (aTSE)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aFTLE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aTSE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTSE"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Active FTLE (aFTLE) and active TSE (aTSE)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTSE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aTRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTRA"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Active PRA (aPRA) and active TRA (aTRA)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aPRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aPRA"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Active PRA (aPRA) and active TRA (aTRA)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aPRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{Hamiltonian}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/Hamiltonian"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Active transport barriers in general 2D Navier–Stokes flow} $
+\end_inset
+
+)
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/Hamiltonian
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{subfunctions}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/subfunctions"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Folder containing frequently used functions to compute trajectories from two-dimensional velocity data, evaluate the gradient of the flowmap/velocity, the classic Cauchy-Green strain tensor, etc... 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/subfunctions
+\size default
+
+\color inherit
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{3D}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{data}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{Arnold-Beltrami-Childress (ABC) flow}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/ABC"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Classic spatially periodic ABC flow. We consider both the steady and unsteady version. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/ABC
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{Turbulence}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/Turbulence"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Three dimensional turbulent channel flow data from John Hopkins Research Center 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/Turbulence
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{demos}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{AdvectiveBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{FTLE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/FTLE"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Hyperbolic LCS from the finite-time Lyapunov exponent} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ FTLE-field applied to ABC data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/FTLE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{TSE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TSE"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Quasi-objective, single-trajectory diagnostics for transport
+barriers} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ TSE field applied to ABC and turbulent channel flow data.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TSE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{TRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TRA"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Quasi-objective, single-trajectory diagnostics for transport
+barriers} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ TRA field applied to ABC and turbulent channel flow data.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{LAVD}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/LAVD"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Elliptic LCSs from the Lagrangian-averaged vorticity deviation} $
+\end_inset
+
+ and 
+\begin_inset Formula $ \textit{ LAVD for 3D flows} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ LAVD field applied to ABC data and turbulent channel flow data.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/LAVD
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{UnifiedLCSTheory}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/UnifiedLCSTheory"
+literal "true"
+
+\end_inset
+
+: (see 
+\begin_inset Formula $ \textit{Unified variational theory of elliptic and hyperbolic LCS in 3D} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Extract LCS from the 
+\begin_inset Formula $ \xi_2 $
+\end_inset
+
+ eigenvector field of the Cauchy-Green strain tensor from the ABC data. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/UnifiedLCSTheory
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{PoincareMap}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/PoincareMap"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Classic Poincare map applied to ABC data.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/PoincareMap
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{ActiveBarriers}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers"
+literal "true"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Active barriers extracted from the three-dimensional channel flow data (see 
+\begin_inset Formula $ \textit{3D turbulent channel flow} $
+\end_inset
+
+) and/or from the ABC data 
+\begin_inset Newline newline
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Quasi-objective, single-trajectory diagnostics for transport barriers} $
+\end_inset
+
+). 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Lagrangian and Eulerian active barriers to vorticity and linear momentum extracted using the active FTLE, active PRA, active TSE and active TRA. 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aFTLE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aFTLE"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Active FTLE (aFTLE) and active TSE (aTSE)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aFTLE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aTSE}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTSE"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Active FTLE (aFTLE) and active TSE (aTSE)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTSE
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aPRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aPRA"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Active PRA (aPRA) and active TRA (aTRA)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aPRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{aTRA}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTRA"
+literal "true"
+
+\end_inset
+
+(see 
+\begin_inset Formula $ \textit{Active PRA (aPRA) and active TRA (aTRA)} $
+\end_inset
+
+) 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTRA
+\size default
+
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\underline{subfunctions}"
+target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/subfunctions"
+literal "true"
+
+\end_inset
+
+: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Folder containing frequently used functions to compute trajectories from two-dimensional velocity data, evaluate the gradient of the flowmap/velocity, the classic Cauchy-Green strain tensor, etc... 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\color blue
+
+\size footnotesize
+github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/subfunctions
+\size default
+
+\color inherit
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
