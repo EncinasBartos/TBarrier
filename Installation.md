@@ -6,7 +6,7 @@ To install this repository and run the Jupyter notebooks on your machine, you wi
 Next, clone this repository by opening a terminal and typing the following commands (do not type the first `$` on each line, it's just a convention to show that this is a terminal prompt, not something else like Python code):
 
     $ cd $HOME  # or any other development directory you prefer
-    $ git clone https://github.com/Encinas97/TBarrier.git
+    $ git clone https://github.com/EncinasBartos/TBarrier.git
     $ cd TBarrier
 
 If you do not want to install git, you can instead download [master.zip](https://github.com/Encinas97/TBarrier/archive/TBarrier.zip), unzip it, rename the resulting directory to `TBarrier` and move it to your development directory.
