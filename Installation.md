@@ -29,7 +29,7 @@ Next, make sure you're in the `TBarrier` directory and run the following command
 
     $ conda create -n TBarrier -c conda-forge --file requirements.txt
    
-When doing so, the libraries installed through pip are not installed into the conda environment. They thus have to be added manually via "pip install --name_of_library"    
+When doing so, the libraries installed through pip are not installed into the conda environment. They thus have to be added manually via "pip install <name_of_library>"    
 Alternatively we recommend installing the required packages from the yml file:
 
     $ conda env create -f environment.yml
