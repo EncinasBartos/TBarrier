@@ -16,3 +16,4 @@
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
+  - ipynb==0.5.1
