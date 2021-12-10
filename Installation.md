@@ -30,7 +30,7 @@ Next, make sure you're in the `TBarrier` directory and run the following command
     $ conda create -n TBarrier -c conda-forge --file requirements.txt
    
 When doing so, the libraries installed through pip are not installed into the conda environment. They thus have to be added manually via "pip install <name_of_library>"    
-Alternatively we recommend installing the required packages from the yml file:
+Alternatively I recommend installing the required packages from the yml file:
 
     $ conda env create -f environment.yml
 
@@ -47,7 +47,7 @@ And that's it! You can now start Jupyter like this:
 
     $ jupyter notebook
 
-This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [localhost:8888](http://localhost:8888/tree). Click on `index.ipynb` to get started.
+This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [localhost:8888](http://localhost:8888/tree). Take a look at `manual.pdf` to get started.
 
 Congrats! You are now ready to learn how to extract transport barriers from velocity data!
 
