@@ -1648,52 +1648,10 @@ literal "true"
 \end_inset
 
  
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
- Closed tensorlines (using the null-geodesics algorithm) computed from 
-\begin_inset Formula 
-\begin{equation}
-\mathbf{x}_{0}'=\mathbf{\eta_{\mathcal{T}_{0}}^{\pm}}(\mathbf{x}_{0})=\sqrt{\frac{\overline{\lambda}_{2}(\mathbf{x}_{0})-\mathcal{T}_{0}}{\overline{\lambda}_{2}(\mathbf{x}_{0})-\overline{\lambda}_{1}(\mathbf{x}_{0})}}\mathbf{\xi}_{1}(\mathbf{x}_{0})\pm\sqrt{\frac{\mathcal{T}_{0}-\overline{\lambda}_{1}(\mathbf{x}_{0})}{\overline{\lambda}_{2}(\mathbf{x}_{0})-\overline{\lambda}_{1}(\mathbf{x}_{0})}}(\mathbf{x}_{0})\mathbf{\xi}_{2}(\mathbf{x}_{0}),\label{eq: diffusive_tensorlines}
-\end{equation}
+\begin_layout Itemize
 
-\end_inset
-
-with 
-\begin_inset Formula $\overline{\lambda_{1}}(\mathbf{x}_{0})\leq\mathcal{T}_{0}\leq\overline{\lambda_{2}}(\mathbf{x}_{0})$
-\end_inset
-
-.
- 
-\begin_inset Formula $\mathbf{\xi}_{1}(\mathbf{x}_{0})$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbf{\xi}_{2}(\mathbf{x}_{0})$
-\end_inset
-
- are respectively the eigenvectors associated to the eigenvalues 
-\begin_inset Formula $\overline{\lambda_{1}}(\mathbf{x}_{0})$
-\end_inset
-
- and 
-\begin_inset Formula $\overline{\lambda_{2}}(\mathbf{x}_{0})$
-\end_inset
-
- of the averaged diffusive Cauchy Green strain tensor 
-\begin_inset Formula $\overline{C_{d}}_{t_{0}}^{t_{N}}(\mathbf{x}_{0})$
-\end_inset
-
-.
- 
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset Newline newline
-\end_inset
-
- 
 \size footnotesize
 \color blue
 github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/E
@@ -1741,18 +1699,7 @@ literal "true"
 \begin_inset Newline newline
 \end_inset
 
- This is the Eulerian counterpart to equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq: diffusive_tensorlines"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- There is, however, no mention of it in the book and no figures.
+NOTE: There is no mention of this part in the book and no figures are provided.
  Stergios, computed, it however in the BarrierTool and it has been mentioned
  in the original paper (see remark 1 in http://georgehaller.com/reprints/mbarrier
 s.pdf).
@@ -1775,60 +1722,6 @@ llipticEulerianDiffusionBarriers
 \begin_inset Newline newline
 \end_inset
 
- 
-\begin_inset Newline newline
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Itemize
-\begin_inset CommandInset href
-LatexCommand href
-name "\\underline{Tensorlines}"
-target "https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/Tensorlines"
-literal "true"
-
-\end_inset
-
-: 
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset Newline newline
-\end_inset
-
- Tensorlines computed from short and open segments of equation 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "eq: diffusive_tensorlines"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- and extracted from AVISO .
- In the book, the computation of these short tensorline segments has been
- applied to HYCOM-data when considering compressible flows.
- I would apply this algorithm to AVISO data (as I am considering only incompress
-ible flows).
- 
-\begin_inset Newline newline
-\end_inset
-
- 
-\begin_inset Newline newline
-\end_inset
-
- 
-\size footnotesize
-\color blue
-github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/T
-ensorlines
-\size default
-\color inherit
  
 \begin_inset Newline newline
 \end_inset
