@@ -1,4 +1,4 @@
-name: tf2
+name: TBarrier
 channels:
   - conda-forge
   - defaults
@@ -18,5 +18,8 @@ dependencies:
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
+  - scikit-image=0.18.3 # proceesing of geometrical objects
   - pip:
     - ipynb==0.5.1
+    - mat73==0.55
+    - sdeint==0.2.2
