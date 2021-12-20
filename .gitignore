@@ -128,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 TBarrier/2D/data/Turbulence/Turbulence.mat
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?

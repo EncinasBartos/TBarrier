@@ -14,7 +14,7 @@ If you do not want to install git, you can instead download the zip file by goin
 ## Install Anaconda
 Next, you will need Python 3 and a bunch of Python libraries. The simplest way to install these is to [download and install Anaconda](https://www.anaconda.com/distribution/), which is a great cross-platform Python distribution for scientific computing. It comes bundled with many scientific libraries, including NumPy, Pandas, Matplotlib, Scikit-Learn and much more, so it's quite a large installation. If you prefer a lighter weight Anaconda distribution, you can [install Miniconda](https://docs.conda.io/en/latest/miniconda.html), which contains the bare minimum to run the `conda` packaging tool. You should install the latest version of Anaconda (or Miniconda) available.
 
-During the installation on MacOSX and Linux, you will be asked whether to initialize Anaconda by running `conda init`: you should accept, as it will update your shell script to ensure that `conda` is available whenever you open a terminal. After the installation, you must close your terminal and open a new one for the changes to take effect.
+During the installation on Mac OS and Linux, you will be asked whether to initialize Anaconda by running `conda init`: you should accept, as it will update your shell script to ensure that `conda` is available whenever you open a terminal. After the installation, you must close your terminal and open a new one for the changes to take effect.
 
 During the installation on Windows, you will be asked whether you want the installer to update the `PATH` environment variable. This is not recommended as it may interfere with other software. Instead, after the installation you should open the Start Menu and launch an Anaconda Shell whenever you want to use Anaconda.
 
@@ -51,7 +51,7 @@ This should open up your browser, and you should see Jupyter's tree view, with t
 
 Congrats! You are now ready to learn how to extract transport barriers from velocity data!
 
-When you're done with Jupyter, you can close it by typing Ctrl-C in the Terminal window where you started it. Every time you want to work on this project, you will need to open a Terminal, and run:
+When you're done with Jupyter, you can close it by clicking on the `Quit` button in the main window of Jupyter. Every time you want to work on this project, you will need to open a Terminal, and run:
 
     $ cd Name-of-Directory $ # or whatever development directory you chose earlier
     $ cd TBarrier
