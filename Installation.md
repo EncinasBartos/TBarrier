@@ -1,7 +1,7 @@
 # Installation
 
 ## Download this repository
-To install this repository you can download [master.zip](https://github.com/EncinasBartos/TBarrier/archive/TBarrier.zip), unzip it, rename the resulting directory to `TBarrier` and move it to your development directory. (to be done...)
+To install this repository you can download [master.zip](https://github.com/EncinasBartos/TBarrier.git), unzip it, rename the resulting directory to `TBarrier` and move it to your development directory.
 
 ## Install Anaconda
 Next, you will need Python 3 and a bunch of Python libraries. The simplest way to install these is to [download and install Anaconda](https://www.anaconda.com/distribution/), which is a great cross-platform Python distribution for scientific computing. It comes bundled with many scientific libraries, including NumPy, Pandas, Matplotlib, Scikit-Learn and much more, so it's quite a large installation. If you prefer a lighter weight Anaconda distribution, you can [install Miniconda](https://docs.conda.io/en/latest/miniconda.html), which contains the bare minimum to run the `conda` packaging tool. You should install the latest version of Anaconda (or Miniconda) available.
@@ -23,7 +23,7 @@ Next, make sure you're in the `TBarrier` directory and run the following command
 
 Next, activate the new environment (from the terminal):
 
-    $ conda activate LCS
+    $ conda activate TBarrier
 
 ## Start Jupyter
 It's almost done! You just need to register the `TBarrier` conda environment to Jupyter. The notebooks in this project will default to the environment named `python3`, so it's best to register this environment using the name `python3` (if you prefer to use another name, you will have to select it in the "Kernel > Change kernel..." menu in Jupyter every time you open a notebook):
@@ -42,7 +42,7 @@ When you're done with Jupyter, you can close it by typing Ctrl-C in the Terminal
 
     $ cd Name-of-Directory $ # or whatever development directory you chose earlier
     $ cd TBarrier
-    $ conda activate LCS
+    $ conda activate TBarrier
     $ jupyter notebook
 
 ## Update This Project and its Libraries
