@@ -8,18 +8,17 @@ dependencies:
   - joblib=0.14 # used for parallel computing
   - jupyter=1.0 # to edit and run Jupyter notebooks
   - matplotlib=3.3 # beautiful plots. See tutorial tools_matplotlib.ipynb
-  - numpy=1.19 # Powerful n-dimensional arrays and numerical computing tools
-  - pillow=8.1 # image manipulation library, (used by matplotlib.image.imread)
+  - numpy=1.19 # n-dimensional arrays and numerical computing tools
   - pip # Python's package-management system
   - python=3.7 # Python! Not using latest version as some libs lack support
   - scipy=1.6 # scientific/technical computing library
+  - skimage=0.18.3
   - tqdm=4.56 # a progress bar library
   - wheel # built-package format for pip
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
-  - scikit-image=0.18.3 # proceesing of geometrical objects
   - pip:
+    - sdeint==0.2.2
     - ipynb==0.5.1
     - mat73==0.55
-    - sdeint==0.2.2
