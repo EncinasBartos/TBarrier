@@ -10,4 +10,4 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:   31/12/2021                               %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of elliptic LCS. The demos are inside the folder "Main".
+Computation of hyperbolic LCS. The demos are inside the folder "Main".
