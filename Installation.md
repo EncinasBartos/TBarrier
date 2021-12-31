@@ -50,14 +50,6 @@ For this, open a terminal, and run:
     $ cd TBarrier # go to this project's directory
     $ git pull
 
-If you get an error, it's probably because you modified a notebook. In this case, before running `git pull` you will first need to commit your changes. I recommend doing this in your own branch, or else you may get conflicts:
-
-    $ git checkout -b my_branch # you can use another branch name if you want
-    $ git add -u
-    $ git commit -m "describe your changes here"
-    $ git checkout master
-    $ git pull
-
 Next, let's update the libraries. First, let's update `conda` itself:
 
     $ conda update -c defaults -n base conda
