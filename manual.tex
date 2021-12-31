@@ -29,7 +29,7 @@
 \makeatother
 
 \begin{document}
-\title{TBarrier notebooks}
+\title{TBarrier Notebooks}
 \author{Alex P. Encinas Bartos and George Haller}
 
 \maketitle
@@ -42,8 +42,8 @@ you through methods used to extract advective, diffusive, stochastic
 and active transport barriers from discrete velocity data. \\
  \\
  The collection of notebooks implement the methods explained in the
-book \href{https://github.com/EncinasBartos/TBarrier}{Transport Barriers and Coherent Structures in Flow Data}written
-by George Haller. We address both two-dimensional and three dimensional
+book \href{https://github.com/EncinasBartos/TBarrier}{Transport Barriers and Coherent Structures in Flow Data} written
+by George Haller. We address both 2D and 3D
 steady/unsteady velocity fields. Hence, \textit{TBarrier} is designed
 for fluid dynamicists in general, with a special focus on oceanographers
 and CFD analysts.
@@ -53,47 +53,7 @@ and CFD analysts.
 The jupyter notebooks are written in \href{https://www.python.org}{Python}.
 It was, however, designed in a way so that it could easily be translated
 into other languages such as \href{https://julialang.org}{Julia} and
-\href{https://www.mathworks.com/products/matlab.html}{Matlab}. Table
-\ref{tab: language} includes a qualitative
-comparison of Python, Julia and Matlab. \\
- \\
- \\
- 
-\begin{table}
-\centering %
-\begin{tabular}{|p{3cm}||p{2cm}|p{2cm}|p{2cm}|}
-\hline 
-\multicolumn{4}{|c|}{Qualitative Comparison of programming languages}\tabularnewline
-\hline 
-Feature  & Python  & Julia  & Matlab \tabularnewline
-\hline 
-Access  & \cellcolor{green!25} Open Source  & \cellcolor{green!25} Open Source  & \cellcolor{red!25} Closed Source\tabularnewline
-\hline 
-Support from Community  & \cellcolor{green!25} Good  & \cellcolor{red!25} Bad  & \cellcolor{yellow!25} Moderate \tabularnewline
-\hline 
-ODE solver  & \cellcolor{red!25} Bad  & \cellcolor{green!25} Good  & \cellcolor{yellow!25} Moderate \tabularnewline
-\hline 
-Computational speed  & \cellcolor{yellow!25} Moderate  & \cellcolor{green!25} Good  & \cellcolor{yellow!25} Moderate \tabularnewline
-\hline 
-User friendly  & \cellcolor{green!25} Good  & \cellcolor{red!25} Bad  & \cellcolor{yellow!25} Moderate \tabularnewline
-\hline 
-\end{tabular}\caption{Qualitative Comparison of programming languages}
-\label{tab: language} 
-\end{table}
-
-The decision on the programming language was based on various factors.
-Although computational speed is definitely a criterion that has to
-be considered when implementing the code, other factors such as the
-ease of access, user friendliness and versatility of the programming
-language have to be included. Although Python seems to be behind Julia
-and Matlab in terms of computational speed (especially when solving
-a large number of ODEs), it outperforms them when it comes to user
-friendliness. Furthermore, Python is widely used in the
-industry. Due to the limitations on the ODE solver,
-the computational speed of the computations in the \textit{TBarrier}
-notebook is lower compared to Matlab or Julia. The main purpose
-of the notebook series is to explain the methods highlighted in the
-book with clarity on a very user friendly and easily accessible platform.
+\href{https://www.mathworks.com/products/matlab.html}{Matlab}.
 
 \subsection{Existing Software}
 
@@ -103,300 +63,55 @@ designed to extract transport barriers from discrete velocity data.
  \\
  The toolbox \textit{\href{https://coherentstructures.github.io/CoherentStructures.jl/stable/}{CoherentStructures.jl}}
 has been developed in Oliver Junge's research group at TUM, Germany.
-It is written in Julia and computationally very efficient. It focuses,
-however, principally on advective transport barriers in two dimensional
-flows and does not explicitly address methods for computing diffusive,
-stochastic and active barriers. \\
+It is written in Julia and computationally very efficient. It focuses  principally on advective and diffusive transport barriers in 2D flows. \\
 
 Secondly, we point out the \textit{\href{https://github.com/haller-group/LCStool}{LCStool}}
 and the \textit{\href{https://github.com/haller-group/BarrierTool}{BarrierTool}}
-developed by \href{http://georgehaller.com/}{George Haller's research group}at
+developed by \href{http://georgehaller.com/}{George Haller's research group} at
 ETHZ. Both tools are written in Matlab. The former tool focuses on
-the extraction of advective Lagrangian Coherent Structures from two-dimensional
-discrete velocity data, whereas the latter includes a GUI addressing
+the extraction of advective Lagrangian Coherent Structures from 2D discrete velocity data, whereas the latter includes a GUI addressing
 both advective and diffusive Lagrangian and Eulerian transport barriers
-in two-dimensional flows.
+in 2D flows.
 
-\section{Overview \textit{TBarrier} notebooks}
+\section{Overview}
 
 The notebooks are stored in the \href{https://github.com/EncinasBartos/TBarrier}{\textit{\underline{TBarrier}}} repository
-on github. By clicking on the underlined headers you are redirected
-to the corresponding folder on the github repository. \\
+on github.
 
 \begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D}{\underline{2D}}
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data}{\underline{data}}
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/AVISO}{\underline{AVISO}}\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/BickleyJet}{\underline{BickleyJet}}\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Turbulence}{\underline{Isotropic two-dimensional turbulence}}\\
- \\
-\end{enumerate}
- 
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers}{\underline{AdvectiveBarriers}}\\
- \\
- 
+\item 2D
 \begin{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FTLE}{\underline{FTLE}}:
-(see $\textit{Hyperbolic LCS from the finite-time Lyapunov exponent}$)
-\\
- \\
- FTLE-field applied to AVISO, Bickley and 2D turbulence data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PRA}{\underline{PRA}}:
-(see $\textit{Elliptic LCSs from the polar rotation angle}$)\\
- \\
- PRA-field applied to AVISO, Bickley and 2D turbulence data. \\
-\\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/LAVD}{\underline{LAVD}}:
-(see $\textit{Elliptic LCSs from the Lagrangian-averaged vorticity deviation}$
-and $\textit{ LAVD for 2D flows}$)\\
- \\
- LAVD-field applied to AVISO, Bickley and 2D turbulence data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TRA}{\underline{TRA}}:
-(see $\textit{Quasi-objective, single-trajectory diagnostics for transport barriers}$)
-\\
- \\
- TRA-field applied to AVISO, Bickley and 2D turbulence data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/TSE}{\underline{TSE}}:
-(see $\textit{Quasi-objective, single-trajectory diagnostics for transport barriers}$)
-\\
- \\
- TSE-field applied to AVISO, Bickley and 2D turbulence data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicLCS}{\underline{HyperbolicLCS}}:
-(see $\textit{Local variational theory of hyperbolic LCS}$ $\textit{Hyperbolic LCSs in 2D flows}$)\\
- \\
- Hyperbolic LCS from tensorlines (shrinklines/stretchlines) of the
-Cauchy-Green strain tensor applied to AVISO, Bickley and 2D turbulence
-data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/HyperbolicOECS}{\underline{HyperbolicOECS}}:
-(see $\textit{Shearless OECSs and objective saddle points in 2D flows}$)\\
- \\
- Hyperbolic OECS from (local) tensorlines launched from objective
-saddle points applied to AVISO. \\
- \\
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticLCS}{\underline{EllipticLCS}}:
-(see $\textit{Computing elliptic LCSs as closed null-geodesics}$)\\
- \\
- Elliptic LCS as closed null geodesics from the Cauchy-Green strain
-tensor applied to AVISO, Bickley and 2D turbulence data. \\
- \\
-
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/EllipticOECS}{\underline{EllipticOECS}}:
-($\textit{Computing elliptic LCSs as closed null-geodesics}$) \\
- \\
- Elliptic OECS as closed null geodesics from the rate of strain tensor
-applied to AVISO. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/FastTensorlineComputation}{\underline{FastTensorlineComputation}}:
-\\
- \\
- Computation of tensorlines using the newly proposed algorithm with
-the re-parametrization of the eigenvectors from AVISO data. The Fast
-Tensorline Computation (FTC) is applied to the rate of strain tensor
-to (locally) extract hyperbolic OECS away from tensorline singularities.\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/PoincareMap}{\underline{PoincareMap}}:
-(see $\textit{Poincaré maps}$)\\
- \\
- Poincare map applied to periodic Bickley-jet. \\
- \\
- 
-\end{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers}{\underline{DiffusionBarriers}}:
-\\
- \\
- Here, we discuss diffusive Lagrangian and Eulerian transport barriers.
-The analysis and algorithm are similar to the ones discussed for the
-advective Barriers. \\
- \\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data}{data}\\
 \begin{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/DBS}{\underline{DBS}}:
-(see $\textit{ Unconstrained diffusion barriers in 2D flows}$) \\
- \\
- Diffusion Barrier Sensitivity (DBS) applied to AVISO and Bickley
-data \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticLagrangianDiffusionBarriers}{\underline{EllipticLagrangianDiffusionBarriers}}:
-(see $\textit{ Unconstrained diffusion barriers in 2D flows}$) \\
- \\
- Elliptic Lagrangian Diffusion Barriers (using null-geodesics algorithm)
-extracted from AVISO and Bickley data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/EllipticEulerianDiffusionBarriers}{\underline{EllipticEulerianDiffusionBarriers}}:
-(see $\textit{ Unconstrained diffusion barriers in 2D flows}$) \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusionBarriers/Tensorlines}{\underline{Tensorlines}}:
-\\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/AVISO}{AVISO}: This directory contains the 2D ocean surface velocity data set derived from AVISO satellite altimetry measurements and the notebooks used for preprocessing of the data. \\ The data freely is available under (http://www.aviso.oceanobs.com). \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Bickley}{Bickley}: This directory contains the gridded (discrete) velocity field of the time-periodic Bickley jet. The data has been discretized from the analytic model of the time-periodic Bickley jet. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Turbulence}{Turbulence}: This directory contains a 2D turbulence simulation. As the files containing the velocity and vorticity are too large to be stored on github, they must be downloaded from (https://polybox.ethz.ch/index.php/s/pzzHiwHfOw5VJZO) and stored in this directory.
 \end{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/StochasticBarriers}{\underline{StochasticBarriers}}:
-(see $\textit{Transport barriers in stochastic velocity fields}$)\\
- \\
- Barriers in stochastic velocity field extracted from AVISO data.
-We specifically focus on elliptic Lagrangian stochastic Barriers.
-\\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers}{\underline{ActiveBarriers}}:
-(see $\textit{2D homogeneous, isotropic turbulence}$)\\
- \\
- Active barriers extracted from the two-dimensional turbulence simulation.
-Lagrangian and Eulerian active barriers to vorticity and linear momentum
-extracted using the active FTLE, active PRA, active TSE, active TRA
-and the Hamiltonian based formulation. \\
- \\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos}{demos}\\
 \begin{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aFTLE}{\underline{aFTLE}}:
-(see $\textit{Active FTLE (aFTLE) and active TSE (aTSE)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTSE}{\underline{aTSE}}:
-(see $\textit{Active FTLE (aFTLE) and active TSE (aTSE)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aTRA}{\underline{aTRA}}:
-(see $\textit{Active PRA (aPRA) and active TRA (aTRA)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/aPRA}{\underline{aPRA}}:
-(see $\textit{Active PRA (aPRA) and active TRA (aTRA)}$) \\
- \\
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers/Hamiltonian}{\underline{Hamiltonian}}:
-(see $\textit{Active transport barriers in general 2D Navier–Stokes flow}$)\\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers}{Advective Barriers}: This directory contains the methods used to extract advective barriers from 2D gridded velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers}{Active Barriers}: This directory contains the methods used to extract active barriers from the 2D turbulence simulation \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusiveBarriers}{Diffusive Barriers}: This directory contains the methods used to extract diffusive barriers from gridded 2D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/StochasticBarriers}{Stochastic Barriers}: This directory contains the methods used to extract stochastic barriers from gridded 2D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/Decompositions}{Decompositions}: This directory contains the decompositions (singular value decomposition, polar decomposition and dynamic polar decomposition) from the gradient of the flow map for a 2D velocity data set. \\ \\
 \end{itemize}
-\end{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/subfunctions}{\underline{subfunctions}}:
-\\
- \\
- Folder containing frequently used functions to compute trajectories
-from two-dimensional velocity data, evaluate the gradient of the flowmap/velocity,
-the classic Cauchy-Green strain tensor, etc... \\
- \\
-\end{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D}{\underline{3D}}
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data}{\underline{data}}
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/ABC}{\underline{Arnold-Beltrami-Childress (ABC) flow}}:
-\\
- \\
- Classic spatially periodic ABC flow. We consider both the steady
-and unsteady version. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/Turbulence}{\underline{Turbulence}}:
-\\
- 
-\end{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos}{\underline{demos}}
-\begin{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers}{\underline{AdvectiveBarriers}}\\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/subfunctions}{subfunctions}: This directory contains a collections of subfunctions used by the algorithms of this chapter for 2D velocity data sets.
+\end{itemize}
+\item 3D
 \begin{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/FTLE}{\underline{FTLE}} (see
-$\textit{Hyperbolic LCS from the finite-time Lyapunov exponent}$)
-\\
- \\
- FTLE-field applied to ABC data. \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TSE}{\underline{TSE}}(see
-$\textit{Quasi-objective, single-trajectory diagnostics for transport barriers}$)
-\\
- \\
- TSE field applied to ABC and turbulent channel flow data.\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/TRA}{\underline{TRA}}(see
-$\textit{Quasi-objective, single-trajectory diagnostics for transport barriers}$)
-\\
- \\
- TRA field applied to ABC and turbulent channel flow data.\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers/LAVD}{\underline{LAVD}}:
-(see $\textit{Elliptic LCSs from the Lagrangian-averaged vorticity deviation}$
-and $\textit{ LAVD for 3D flows}$) \\
- \\
- LAVD field applied to ABC data and turbulent channel flow data.\\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/UnifiedLCSTheory}{\underline{UnifiedLCSTheory}}:
-(see $\textit{Unified variational theory of elliptic and hyperbolic LCS in 3D}$)
-\\
- \\
- Extract LCS from the $\xi_{2}$ eigenvector field of the Cauchy-Green
-strain tensor from the ABC data. \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers/PoincareMap}{\underline{PoincareMap}}:
-\\
- \\
- Classic Poincare map applied to ABC data.\\
- \\
- 
-\end{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers}{\underline{ActiveBarriers}}\\
- \\
- Active barriers extracted from the three-dimensional channel flow
-data (see $\textit{3D turbulent channel flow}$) and/or from the ABC
-data \\
-(see $\textit{Quasi-objective, single-trajectory diagnostics for transport barriers}$).
-\\
- \\
- Lagrangian and Eulerian active barriers to vorticity and linear momentum
-extracted using the active FTLE, active PRA, active TSE and active
-TRA. \\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data}{data}\\
 \begin{itemize}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aFTLE}{\underline{aFTLE}}(see
-$\textit{Active FTLE (aFTLE) and active TSE (aTSE)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTSE}{\underline{aTSE}}(see
-$\textit{Active FTLE (aFTLE) and active TSE (aTSE)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aPRA}{\underline{aPRA}}(see
-$\textit{Active PRA (aPRA) and active TRA (aTRA)}$) \\
- \\
- 
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers/aTRA}{\underline{aTRA}}(see
-$\textit{Active PRA (aPRA) and active TRA (aTRA)}$) \\
- \\
- 
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/ABC}{ABC}: This directory contains the gridded (discrete) velocity field of both the steady and unsteady Arnold–Beltrami–Childress flow. The data has been discretized from the analytic model. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/Turbulence}{Turbulence}: This directory contains the publicly available Johns Hopkins University Turbulence Database (JHTDB) a direct numerical simulation of a $ Re_{\tau} = 1000 $ channel flow. The data is availabel at \href{http://turbulence.pha.jhu.edu/Channel_Flow.aspx}{channel flow} \\ \\
 \end{itemize}
-\end{enumerate}
-\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/subfunctions}{\underline{subfunctions}}:
-\\
- \\
- Folder containing frequently used functions to compute trajectories
-from two-dimensional velocity data, evaluate the gradient of the flowmap/velocity,
-the classic Cauchy-Green strain tensor, etc... \\
- \\
-\end{enumerate}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos}{demos}\\
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers}{Advective Barriers}: This directory contains the methods used to extract advective barriers from gridded 3D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers}{Active Barriers}: This directory contains the methods used to extract active barriers from the 3D turbulence simulation. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/Decompositions}{Decompositions}: This directory contains the decompositions (singular value decomposition, polar decomposition and dynamic polar decomposition) from the gradient of the flow map for a 3D velocity data set. \\ \\
+\end{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/subfunctions}{subfunctions}: This directory contains a collections of subfunctions used by the algorithms of this chapter for 3D velocity data sets.
+\end{itemize}
 \end{enumerate}
 
 \end{document}

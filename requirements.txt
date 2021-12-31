@@ -16,4 +16,6 @@
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
-  - ipynb==0.5.1
+  - ipynb==0.5.1 # library for jupyter
+  - mat73==0.55 # library for importing large mat files
+  - sdeint==0.2.2 # library for stochastic differential equations
