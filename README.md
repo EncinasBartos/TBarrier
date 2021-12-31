@@ -8,7 +8,7 @@ TBarrier Notebook contains a series of jupyter notebooks that guide you through 
 
 ## About
 
-The handbook was written and tested with Python 3.7.
+The notebooks were written and tested with Python 3.7.
 
 Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed.
 
