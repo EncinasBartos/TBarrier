@@ -22,6 +22,8 @@ For a complete [Installation-guideline](Installation.md) we refer to the 'Instal
 
 You can read more about using conda environments in the [Managing Environments](http://conda.pydata.org/docs/using/envs.html) section of the conda documentation.
 
+The notebooks will be continuously update so please always check out the latest version.
+
 ## License
 
 ### Code
