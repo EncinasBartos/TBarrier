@@ -24,10 +24,12 @@ You can read more about using conda environments in the [Managing Environments](
 
 The notebooks will be continuously update so please always check out the latest version.
 
+Please report any issues/bugs to Alex Pablo Encinas Bartos (enalex@ethz.ch)
+
 ## License
 
 ### Code
 The code in this repository, including all code samples in the notebooks listed above, is released under the [GNU license](LICENSE-CODE). Read more at the [Open Source Initiative](https://opensource.org/osd).
 
 ### Text
-The text content of the book is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
+The text content of the notebook is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
