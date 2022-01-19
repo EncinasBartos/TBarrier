@@ -1,6 +1,9 @@
 # TBarrier Notebook
 
-TBarrier Notebook contains a series of jupyter notebooks that guide you through methods to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data
+TBarrier Notebook contains a series of jupyter notebooks that guide you through methods to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data. It implements algorithms discussed in more detail in the following forthcoming book:
+
+
+G. Haller, Transport Barriers and Coherent Structures – Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (2022)
 
 ## How to Use this Book
 
@@ -24,8 +27,6 @@ You can read more about using conda environments in the [Managing Environments](
 
 The notebooks will be continuously update so please always check out the latest version.
 
-Please report any issues/bugs to Alex Pablo Encinas Bartos (enalex@ethz.ch)
-
 ## License
 
 ### Code
@@ -33,3 +34,11 @@ The code in this repository, including all code samples in the notebooks listed 
 
 ### Text
 The text content of the notebook is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
+
+## References
+
+When using this code, please cite the following source for the underlying theory:
+
+G. Haller, Transport Barriers and Coherent Structures – Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (2022)
+
+Please report any issues/bugs to Alex Pablo Encinas Bartos (enalex@ethz.ch)
