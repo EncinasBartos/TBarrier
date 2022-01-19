@@ -37,9 +37,8 @@ The text content of the notebook is released under the [CC-BY-NC-ND license](LIC
 
 ## References
 
-Please consider to cite this article when using this code:
+When using this code, please cite the following source for the underlying theory:
 
 G. Haller, Transport Barriers and Coherent Structures – Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (2022)
-
 
 Please report any issues/bugs to Alex Pablo Encinas Bartos (enalex@ethz.ch)
