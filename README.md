@@ -1,10 +1,3 @@
-<img src="docs/images/SSMLearnLogo.png" width="350" align="right">
-
-<h1 style="font-family:Helvetica;" align="left">
-    SSMLearn
-</h1>
-
-
 # TBarrier Notebook
 
 TBarrier Notebook contains a series of jupyter notebooks that guide you through methods to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data. It implements algorithms discussed in more detail in the following forthcoming book:
