@@ -10,4 +10,6 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:   31/12/2021                               %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-TO BE COMPLETED
+Poincare Map of steady ABC-flow.
+There is also and additional demo which computes the Poincare Map of the same steady ABC-flow, assuming an analytic model.
+Feel free to compare the accuracy of the analytic model with the purely data-driven results.
