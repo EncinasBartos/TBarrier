@@ -10,4 +10,4 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:   31/12/2021                               %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of TSE. The demos are inside the folder "Main".
+Computation of hyperbolic OECS using FastTensorlineComputation. The demos are inside the folder "Main".
