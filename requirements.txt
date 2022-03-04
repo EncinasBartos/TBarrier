@@ -19,3 +19,4 @@
   - ipynb==0.5.1 # library for jupyter
   - mat73==0.55 # library for importing large mat files
   - sdeint==0.2.2 # library for stochastic differential equations
+  - plotly==5.6.0 # library for plotly
