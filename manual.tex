@@ -1,0 +1,120 @@
+%% LyX 2.3.5.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose}
+\usepackage{color}
+\usepackage{array}
+\usepackage{amstext}
+\usepackage[unicode=true,
+ bookmarks=false,
+ breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=false]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+%codification of the document
+% reference-package
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+
+
+%Here begins the body of the document
+
+\makeatother
+
+\begin{document}
+\title{TBarrier Notebooks}
+\author{Alex P. Encinas Bartos and George Haller}
+
+\maketitle
+\tableofcontents{}
+
+\section{Introduction}
+
+\textit{TBarrier} contains a series of jupyter notebooks that guide
+you through methods used to extract advective, diffusive, stochastic
+and active transport barriers from discrete velocity data. \\
+ \\
+ The collection of notebooks implement the methods explained in the
+book \href{https://github.com/EncinasBartos/TBarrier}{Transport Barriers and Coherent Structures in Flow Data} written
+by George Haller. We address both 2D and 3D
+steady/unsteady velocity fields. Hence, \textit{TBarrier} is designed
+for fluid dynamicists in general, with a special focus on oceanographers and CFD analysts. \\ \\
+The notebook series is still under development. More notebooks will be added and the github repository will be constantly updated.
+
+\subsection{Programming Language}
+
+The jupyter notebooks are written in \href{https://www.python.org}{Python}.
+It was, however, designed in a way so that it could easily be translated
+into other languages such as \href{https://julialang.org}{Julia} and
+\href{https://www.mathworks.com/products/matlab.html}{Matlab}.
+
+\subsection{Existing Software}
+
+We highlight three major publicly available existing software packages
+designed to extract transport barriers from discrete velocity data.
+\\
+ \\
+ The toolbox \textit{\href{https://coherentstructures.github.io/CoherentStructures.jl/stable/}{CoherentStructures.jl}}
+has been developed in Oliver Junge's research group at TUM, Germany.
+It is written in Julia and computationally very efficient. It focuses  principally on advective and diffusive transport barriers in 2D flows. \\
+
+Secondly, we point out the \textit{\href{https://github.com/haller-group/LCStool}{LCStool}}
+and the \textit{\href{https://github.com/haller-group/BarrierTool}{BarrierTool}}
+developed by \href{http://georgehaller.com/}{George Haller's research group} at
+ETHZ. Both tools are written in Matlab. The former tool focuses on
+the extraction of advective Lagrangian Coherent Structures from 2D discrete velocity data, whereas the latter includes a GUI addressing
+both advective and diffusive Lagrangian and Eulerian transport barriers
+in 2D flows.
+
+\section{Overview}
+
+The notebooks are stored in the \href{https://github.com/EncinasBartos/TBarrier}{\textit{\underline{TBarrier}}} repository
+on github.
+
+\begin{enumerate}
+\item 2D
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data}{data}\\
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/AVISO}{AVISO}: This directory contains the 2D ocean surface velocity data set derived from AVISO satellite altimetry measurements and the notebooks used for preprocessing of the data. \\ The data freely is available under (http://www.aviso.oceanobs.com). \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Bickley}{Bickley}: This directory contains the gridded (discrete) velocity field of the time-periodic Bickley jet. The data has been discretized from the analytic model of the time-periodic Bickley jet. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/data/Turbulence}{Turbulence}: This directory contains a 2D turbulence simulation. As the files containing the velocity and vorticity are too large to be stored on github, they must be downloaded from (https://polybox.ethz.ch/index.php/s/pzzHiwHfOw5VJZO) and stored in this directory.
+\end{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos}{demos}\\
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/AdvectiveBarriers}{Advective Barriers}: This directory contains the methods used to extract advective barriers from 2D gridded velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/ActiveBarriers}{Active Barriers}: This directory contains the methods used to extract active barriers from the 2D turbulence simulation \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/DiffusiveBarriers}{Diffusive Barriers}: This directory contains the methods used to extract diffusive barriers from gridded 2D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/StochasticBarriers}{Stochastic Barriers}: This directory contains the methods used to extract stochastic barriers from gridded 2D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/demos/Decompositions}{Decompositions}: This directory contains the decompositions (singular value decomposition, polar decomposition and dynamic polar decomposition) from the gradient of the flow map for a 2D velocity data set. \\ \\
+\end{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/2D/subfunctions}{subfunctions}: This directory contains a collections of subfunctions used by the algorithms of this chapter for 2D velocity data sets.
+\end{itemize}
+\item 3D
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data}{data}\\
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/ABC}{ABC}: This directory contains the gridded (discrete) velocity field of both the steady and unsteady Arnold–Beltrami–Childress flow. The data has been discretized from the analytic model. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/data/Turbulence}{Turbulence}: This directory contains the publicly available Johns Hopkins University Turbulence Database (JHTDB) a direct numerical simulation of a $ Re_{\tau} = 1000 $ channel flow. The data is availabel at \href{http://turbulence.pha.jhu.edu/Channel_Flow.aspx}{channel flow} \\ \\
+\end{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos}{demos}\\
+\begin{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/AdvectiveBarriers}{Advective Barriers}: This directory contains the methods used to extract advective barriers from gridded 3D velocity data \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/ActiveBarriers}{Active Barriers}: This directory contains the methods used to extract active barriers from the 3D turbulence simulation. \\ \\
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/demos/Decompositions}{Decompositions}: This directory contains the decompositions (singular value decomposition, polar decomposition and dynamic polar decomposition) from the gradient of the flow map for a 3D velocity data set. \\ \\
+\end{itemize}
+\item \href{https://github.com/EncinasBartos/TBarrier/tree/main/TBarrier/3D/subfunctions}{subfunctions}: This directory contains a collections of subfunctions used by the algorithms of this chapter for 3D velocity data sets.
+\end{itemize}
+\end{enumerate}
+
+\section{Acknowledgements}
+Our special thanks go to Balint Kaszas, who carefully read and tested the beta-versions of this notebook series.
+
+\end{document}
