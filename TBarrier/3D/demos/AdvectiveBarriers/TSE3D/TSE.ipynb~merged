@@ -1,0 +1,309 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+<<<<<<< HEAD
+    "The Trajectory Stretching Exponent $ (\\mathrm{TSE}_{t_0}^{t_N}) $ is computed from the velocity along a lagrangian particle trajectory. The time-interval $ [t_0, t_N] $ is discretized with a resolution of N."
+=======
+    "The Trajectory Stretching Exponent $ (\\mathrm{TSE}_{t_0}^{t_N}) $ is computed from the velocity along a particle trajectory. The time-interval $ [t_0, t_N] $ is discretized."
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "\\begin{equation}\n",
+<<<<<<< HEAD
+    "\\mathrm{TSE}_{t_0}^{t_N} = \\log{\\dfrac{|\\mathbf{\\dot{x}}(t_N)|}{|\\mathbf{\\dot{x}}(t_0)|}}\n",
+=======
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "\\mathrm{TSE}_{t_0}^{t_N}(\\mathbf{x}_0) = \\dfrac{1}{t_N-t_0} \\log{\\dfrac{|\\mathbf{\\dot{x}}(t_N)|}{|\\mathbf{\\dot{x}}(t_0)|}}\n",
+=======
+    "\\mathrm{TSE}_{t_0}^{t_N} = \\log{\\dfrac{\\sqrt{|\\mathbf{\\dot{x}}(t_N)|^2 +\\mathrm{v}_0^2}}{\\sqrt{|\\mathbf{\\dot{x}}(t_0)|^2 +\\mathrm{v}_0^2}}}\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "\\end{equation}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "| Name | Type (Shape) | Description |\n",
+    "| --- | --- | --- |\n",
+    "| lenT | float | $ t_N-t_0 $ |\n",
+<<<<<<< HEAD
+    "| velocity | array (3, N) | velocity along trajectories over the <br /> discretized time-interval with resolution N|\n",
+    "| TSE | float | $ \\mathrm{TSE}_{t_0}^{t_N} $|\n",
+    "| TSE_bar | float | $ \\mathrm{\\overline{TSE}}_{t_0}^{t_N} $|"
+=======
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "| velocity | array (Nt-1, 2) | velocity along trajectory starting at $ (\\mathbf{x}_0) $ over $ [t_0,t_N] $|\n",
+    "| TSE | float | $ \\mathrm{TSE}_{t_0}^{t_N}(\\mathbf{x}_0) $|"
+=======
+    "| v0 | float | $ \\mathrm{v}_0 $|\n",
+    "| velocity | array (3, N) | velocity along trajectories over the <br /> discretized time-interval with resolution N|\n",
+    "| TSE | float | $ \\mathrm{\\overline{TSE}}_{t_0}^{t_N} $|"
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+   ]
+  },
+  {
+   "cell_type": "code",
+<<<<<<< HEAD
+   "execution_count": null,
+   "metadata": {
+    "code_folding": [
+     0
+    ]
+=======
+   "execution_count": 1,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-12-09T00:54:21.636231Z",
+     "start_time": "2021-12-09T00:54:21.558225Z"
+    }
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+   },
+   "outputs": [],
+   "source": [
+    "# Import numpy\n",
+    "import numpy as np\n",
+    "\n",
+    "# Import symbols from math\n",
+    "from math import sqrt, acos"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+<<<<<<< HEAD
+    "code_folding": [
+     0
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "def _TSE(velocity):\n",
+=======
+    "ExecuteTime": {
+     "end_time": "2021-12-09T00:54:21.651883Z",
+     "start_time": "2021-12-09T00:54:21.640284Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "def _TSE(lenT, velocity):\n",
+    "                \n",
+    "    # velocity at time '0'\n",
+    "    velx0 = velocity[0, 0] # float\n",
+    "    vely0 = velocity[0, 1] # float\n",
+    "            \n",
+    "    vel0 = sqrt(velx0**2+vely0**2) # float\n",
+    "                \n",
+    "    # velocity at time 'N'\n",
+    "    velxN = velocity[-1, 0] # float\n",
+    "    velyN = velocity[-1, 1] # float\n",
+    "                 \n",
+    "    velN = sqrt(velxN**2+velyN**2) # float\n",
+    "                 \n",
+    "    TSE = np.log(velN/vel0)/lenT # float\n",
+=======
+    "def _TSE(velocity, v0 = 0):\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "                \n",
+    "    # velocity at time '0'\n",
+    "    velx0 = velocity[0, 0]\n",
+    "    vely0 = velocity[1, 0]\n",
+    "    velz0 = velocity[2, 0]\n",
+    "            \n",
+<<<<<<< HEAD
+    "    vel0 = sqrt(velx0**2+vely0**2+velz0**2)\n",
+=======
+    "    vel0 = sqrt(velx0**2+vely0**2+velz0**2+v0**2)\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "                \n",
+    "    # velocity at time 'N'\n",
+    "    velxN = velocity[0, -1]\n",
+    "    velyN = velocity[1, -1]\n",
+    "    velzN = velocity[2, -1]\n",
+    "                \n",
+<<<<<<< HEAD
+    "    velN = sqrt(velxN**2+velyN**2+velzN**2)\n",
+    "                \n",
+    "    TSE = np.log(velN/vel0)\n",
+=======
+    "    velN = sqrt(velxN**2+velyN**2+velzN**2+v0**2)\n",
+    "                \n",
+    "    TSE = np.log(velN/vel0)\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "        \n",
+    "    return TSE"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+<<<<<<< HEAD
+    "The average Trajectory Stretching Exponent $ (\\mathrm{\\overline{TSE}}_{t_0}^{t_N}) $ is computed from the velocity along the trajectories. The time-interval $ [t_0, t_N] $ is discretized with a resolution of N.\n",
+    "\n",
+    "\\begin{equation}\n",
+    "\\mathrm{\\overline{TSE}}_{t_0}^{t_N} = \\dfrac{1}{t_N-t_0} \\sum_{i=0}^{N-1}|\\log{\\dfrac{|\\mathbf{\\dot{x}}(t_{i+1})|}{|\\mathbf{\\dot{x}}(t_i)|}}|\n",
+=======
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "The average Trajectory Stretching Exponent $ (\\mathrm{\\overline{TSE}}_{t_0}^{t_N}) $ is computed from the velocity along the trajectories launched from initial conditions distributed over a regular meshgrid of size (Ny, Nx). The time-interval $ [t_0, t_N] $ is discretized.\n",
+=======
+    "The average Trajectory Stretching Exponent $ (\\mathrm{\\overline{TSE}}_{t_0}^{t_N}) $ is computed from the velocity along the trajectories. The time-interval $ [t_0, t_N] $ is discretized with a resolution of N.\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+    "\n",
+    "\\begin{equation}\n",
+    "\\mathrm{\\overline{TSE}}_{t_0}^{t_N}(\\mathbf{x}_0) = \\dfrac{1}{t_N-t_0} \\sum_{i=0}^{N-1}|\\log{\\dfrac{|\\mathbf{\\dot{x}}(t_{i+1})|}{|\\mathbf{\\dot{x}}(t_i)|}}|\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "\\end{equation}"
+   ]
+  },
+  {
+   "cell_type": "code",
+<<<<<<< HEAD
+   "execution_count": null,
+   "metadata": {
+    "code_folding": [
+     0
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "def _TSE_bar(velocity, lenT):\n",
+=======
+   "execution_count": 1,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-12-29T14:54:20.024249Z",
+     "start_time": "2021-12-29T14:54:20.008300Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "def _TSE_bar(lenT, velocity):\n",
+=======
+    "def _TSE_bar(velocity, lenT, v0 = 0):\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "        \n",
+    "    TSE_bar = []\n",
+    "        \n",
+    "    # Iterate over trajectory\n",
+<<<<<<< HEAD
+    "    for k in range(velocity.shape[1]-1):\n",
+    "            \n",
+=======
+    "    for k in range(velocity.shape[0]-1):\n",
+    "            \n",
+<<<<<<< HEAD:TBarrier/2D/demos/AdvectiveBarriers/TSE2D/TSE.ipynb
+    "        velx0 = velocity[k, 0] # float\n",
+    "        vely0 = velocity[k, 1] # float\n",
+    "                    \n",
+    "        vel0 = sqrt(velx0**2+vely0**2) # float\n",
+    "                    \n",
+    "        velx1 = velocity[k+1, 0] # float\n",
+    "        vely1 = velocity[k+1, 1] # float\n",
+    "                \n",
+    "        vel1 = sqrt(velx1**2+vely1**2) # float\n",
+=======
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "        velx0 = velocity[0, k]\n",
+    "        vely0 = velocity[1, k]\n",
+    "        velz0 = velocity[2, k]\n",
+    "                    \n",
+<<<<<<< HEAD
+    "        vel0 = sqrt(velx0**2+vely0**2+velz0**2)\n",
+=======
+    "        vel0 = sqrt(velx0**2+vely0**2+velz0**2+v0**2)\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+    "                    \n",
+    "        velx1 = velocity[0, k+1]\n",
+    "        vely1 = velocity[1, k+1]\n",
+    "        velz1 = velocity[2, k+1]\n",
+    "                \n",
+<<<<<<< HEAD
+    "        vel1 = sqrt(velx1**2+vely1**2+velz1**2)\n",
+    "                \n",
+    "        TSE_bar.append(abs(np.log(vel1/vel0)))\n",
+    "        \n",
+    "    return np.sum(TSE_bar)/lenT"
+=======
+    "        vel1 = sqrt(velx1**2+vely1**2+velz1**2+v0**2)\n",
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba:TBarrier/3D/demos/AdvectiveBarriers/TSE3D/TSE.ipynb
+    "                \n",
+    "        TSE_bar.append(abs(np.log(vel1/vel0))) # list(Nt-2)\n",
+    "        \n",
+    "    return np.sum(TSE_bar)/lenT # float"
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+<<<<<<< HEAD
+   "version": "3.7.11"
+  },
+  "latex_envs": {
+   "LaTeX_envs_menu_present": true,
+   "autoclose": false,
+   "autocomplete": true,
+   "bibliofile": "biblio.bib",
+   "cite_by": "apalike",
+   "current_citInitial": 1,
+   "eqLabelWithNumbers": true,
+   "eqNumInitial": 1,
+   "hotkeys": {
+    "equation": "Ctrl-E",
+    "itemize": "Ctrl-I"
+   },
+   "labels_anchors": false,
+   "latex_user_defs": false,
+   "report_style_numbering": false,
+   "user_envs_cfg": false
+=======
+   "version": "3.7.12"
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": true,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

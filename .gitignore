@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+TBarrier/2D/data/Turbulence/Turbulence.mat
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+TBarrier/2D/data/AVISO/processed_data/Agulhas_AVISO.mat
+TBarrier/2D/data/AVISO/raw_data/AVISO_Agulhas.nc
