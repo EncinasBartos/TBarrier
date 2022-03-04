@@ -18,7 +18,10 @@ dependencies:
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
+<<<<<<< HEAD
   - plotly=5.6.0
+=======
+>>>>>>> 9f629d66ae56f4b85feb5c441d44a74d1f3b2bba
   - pip:
     - sdeint==0.2.2
     - ipynb==0.5.1
