@@ -1,4 +1,4 @@
-<img src="logo.png" width="500" align="right">
+<img src="docs/images/logo.png" width="290" align="right">
 
 <h1 style="font-family:Helvetica;" align="left">
     TBarrier Notebook
@@ -33,3 +33,9 @@ The code in this repository, including all code samples in the notebooks listed 
 
 ### Text
 The text content of the book is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
+
+### References
+
+When using this code, please cite the following source for the underlying theory:
+ 
+G. Haller, Transport Barriers and Coherent Structures – Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (2022)
