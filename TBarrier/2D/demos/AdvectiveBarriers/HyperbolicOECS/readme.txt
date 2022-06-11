@@ -19,10 +19,10 @@ _"HyperbolicOECSAgulhas": Hyperbolic OECS demo applied to AVISO data set in Agul
 
 Auxiliary functions in current folder:
 
-_"orient_vectorfield":    Locally (within a grid-cell) re-orients the globally non-orientable eigenvector field and evaluates the                                       eigenvector at 'x' via linear interpolation
-_"RK4_tensorlines":       Defines update scheme (RK4-integration) in order to integrate tensorlines.
-_"scaling_vectorfield":   Rescales eigenvector so that tensorline singularites are turned into fixed points. (see [1])
-_"tensorlines":           Wrapper function for RK4_tensorlines().
+_"orient_vectorfield": Locally (within a grid-cell) re-orients the globally non-orientable eigenvector field and evaluates the eigenvector at 'x' via linear interpolation
+_"RK4_tensorlines": Defines update scheme (RK4-integration) in order to integrate tensorlines.
+_"scaling_vectorfield": Rescales eigenvector so that tensorline singularites are turned into fixed points. (see [1])
+_"tensorlines": Wrapper function for RK4_tensorlines().
 
 References:
 
