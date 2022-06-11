@@ -1,13 +1,27 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%              ____________________   ___           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%             /  ________   ___   /__/  /           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%            /  _____/  /  /  /  ___   /            %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%           /_______/  /__/  /__/  /__/             %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%    Swiss Federal Institute of Technology Zurich   %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Author: Alex P. Encinas Bartos, George Haller    %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Email:  enalex@ethz.ch                           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Date:   31/12/2021                               %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%              ____________________   ___             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%             /  ________   ___   /__/  /             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%            /  _____/  /  /  /  ___   /              %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%           /_______/  /__/  /__/  /__/               %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%     Swiss Federal Institute of Technology Zurich    %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Authors:    Alex P. Encinas Bartos, George Haller  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Revised by: Balint Kaszas                          %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Email:      enalex@ethz.ch                         %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of aPRA. The demos are inside the folder "Main".
+Computation of active momentum and vorticity barriers from aPRA according to [1,2]. The two dimensional turbulence dataset (velocity and vorticity fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the Lagrangian calculations can be downloaded from: https://polybox.ethz.ch/index.php/s/L0b0piQEqhOqNjg. The combined size of the entire dataset is approximately 10GB.
+
+The demos are inside the folders "Main"
+
+_"aPRA2DTurbulenceLagrangianVorticity":  aPRA to visualize Lagrangian vorticity barriers.
+_"aPRA2DTurbulenceLagrangianLinearMomentum":  aPRA to visualize Lagrangian linear momentum barriers.
+_"aPRA2DTurbulenceEulerianVorticity":  aPRA to visualize Eulerian vorticity barriers.
+_"aPRA2DTurbulenceEulerianLineraMomentum":  aPRA to visualize Eulerian linear momentum barriers.
+
+References:
+
+[1] Haller, G., Katsanoulis, S., Holzner, M., Frohnapfel, B., & Gatti, D. (2020). Objective barriers to the transport of dynamically active vector fields. Journal of Fluid Mechanics, 905.
+
+[2] Notebook 9.7.5. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.

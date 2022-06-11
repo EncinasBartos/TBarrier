@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of eliptic LCS using the null-geodesics algorithm introduced by [1,2]
+Computation of elliptic LCS using the null-geodesics algorithm introduced by [1,2]
 
 The demo is inside the folder "Main":
 
