@@ -19,9 +19,9 @@ _"FastTensorlineComputationAgulhas": Hyperbolic OECS from Fast Tensorline Comput
 
 Auxiliary functions in current folder:
 
-_"extract_hyperbolic_OECS":         Extracts reduced hyperbolic tensorlines (=OECS) satisfying monotonicity and hyperbolicity constraints.
-_"phi_prime":				        Computes Interpolant for phi_prime.
-_"tensorline_equation": 		    Tensorlines integration.
+_"extract_hyperbolic_OECS": Extracts reduced hyperbolic tensorlines (=OECS) satisfying monotonicity and hyperbolicity constraints.
+_"phi_prime":	Computes Interpolant for phi_prime.
+_"tensorline_equation": Tensorlines integration.
 
 References:
 
