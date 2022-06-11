@@ -17,17 +17,13 @@ The demo is inside the folder "Main":
 
 _"HyperbolicLCSAgulhas": Hyperbolic LCS demo applied to AVISO data set in Agulhas region
 
-_"HyperbolicLCSTurbulence": Hyperbolic LCS demo applied to 2D turbulence simulation. The two dimensional turbulence dataset (velocity
-                            and vorticity fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the
-                            Lagrangian calculations can be downloaded from: https://polybox.ethz.ch/index.php/s/L0b0piQEqhOqNjg. The
-                            combined size of the entire dataset is approximately 10GB.
+_"HyperbolicLCSTurbulence": Hyperbolic LCS demo applied to 2D turbulence simulation. The two dimensional turbulence dataset (velocity and vorticity fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the Lagrangian calculations can be downloaded from: https://polybox.ethz.ch/index.php/s/L0b0piQEqhOqNjg. The combined size of the entire dataset is approximately 10GB.
 
 Auxiliary functions in current folder:
 
 _"orient_vectorfield": Locally (within a grid-cell) re-orients the globally non-orientable eigenvector field and evaluates the                                     eigenvector at 'x' via linear interpolation
 _"RK4_tensorlines": Defines update scheme (RK4-integration) in order to integrate tensorlines. Separate functions for                                           compressible/incompressible velocity fields
-_"scaling_vectorfield": Rescales eigenvector so that tensorline singularites are turned into fixed points (see [1]). Separate functions
-                        for compressible/incompressible velocity fields
+_"scaling_vectorfield": Rescales eigenvector so that tensorline singularites are turned into fixed points (see [1]). Separate functions for compressible/incompressible velocity fields
 _"tensorlines": Wrapper functions for _RK4_tensorlines_incompressible()/_RK4_tensorlines_compressible()
 
 References:
