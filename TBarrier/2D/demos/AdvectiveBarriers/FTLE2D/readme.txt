@@ -15,7 +15,7 @@ Computation of FTLE [1,2,3]
 
 The demo is inside the folder "Main":
 
-_"FTLEAgulhas":    FTLE demo applied to AVISO data set in Agulhas region
+_"FTLEAgulhas": FTLE demo applied to AVISO data set in Agulhas region
 
 _"FTLETurbulence": FTLE demo applied to 2D turbulence simulation. The two dimensional turbulence dataset (velocity and 
                    vorticity fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the Lagrangian
@@ -24,7 +24,7 @@ _"FTLETurbulence": FTLE demo applied to 2D turbulence simulation. The two dimens
 
 Auxiliary functions in current folder:
 
-_"FTLE":           computes FTLE either from Cauchy Green strain tensor or gradient of the flow map.
+_"FTLE": computes FTLE either from Cauchy Green strain tensor or gradient of the flow map.
 
 References:
 
