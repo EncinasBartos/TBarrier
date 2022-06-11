@@ -15,13 +15,13 @@ Computation of LAVD [1,2]
 
 The demos are inside the folder "Main":
 
-_"LAVDAgulhas":             LAVD demo applied to AVISO data set in Agulhas region
+_"LAVDAgulhas": LAVD demo applied to AVISO data set in Agulhas region
 
-_"LAVDTurbulence":          LAVD demo applied to 2D turbulence simulation. The two dimensional turbulence dataset (velocity and vorticity                                 fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the Lagrangian calculations                               can be downloaded from: https://polybox.ethz.ch/index.php/s/L0b0piQEqhOqNjg. The combined size of the entire                                   dataset is approximately 10GB.
+_"LAVDTurbulence": LAVD demo applied to 2D turbulence simulation. The two dimensional turbulence dataset (velocity and vorticity fields in the folder "Data") and the advected trajectories ("particles1100.mat") for the Lagrangian calculations can be downloaded from: https://polybox.ethz.ch/index.php/s/L0b0piQEqhOqNjg. The combined size of the entire dataset is approximately 10GB.
 
 Auxiliary functions in current folder:
 
-_"LAVD":                   computes the LAVD along trajectories
+_"LAVD": computes the LAVD along trajectories
 _"find_outermost_contour": computes the outermost nearly convex closed contour.
 
 References:
