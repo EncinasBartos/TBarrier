@@ -17,10 +17,10 @@ The demos are inside the folders "aFTLE2D/aPRA2D/aTRA2D/aTSE2D/Hamiltonian"
 
 Auxiliary functions in current folder:
 
-_"InstantaneousActiveMomentum":  Interpolant for RHS of active instantaneous (Eulerian) linear momentum barrier equation.
+_"InstantaneousActiveMomentum": Interpolant for RHS of active instantaneous (Eulerian) linear momentum barrier equation.
 _"InstantaneousActiveVorticity": Interpolant for RHS of active instantaneous (Eulerian) vorticity barrier equation.
-_"LagrangianActiveMomentum":     Interpolant for RHS of active Lagrangian linear momentum barrier equation.
-_"LagrangianActiveVorticity":    Interpolant for RHS of active Lagrangian vorticity barrier equation.
+_"LagrangianActiveMomentum": Interpolant for RHS of active Lagrangian linear momentum barrier equation.
+_"LagrangianActiveVorticity": Interpolant for RHS of active Lagrangian vorticity barrier equation.
 
 References:
 
