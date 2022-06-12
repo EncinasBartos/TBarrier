@@ -15,8 +15,8 @@ Computation of active momentum and vorticity barriers from aTRA according to [1,
 
 The demos are inside the folders "Main"
 
-_"aTRA2DTurbulenceLagrangianLinearMomentum":  aTRA to visualize Lagrangian linear momentum barriers.
-_"aTRA2DTurbulenceEulerianLineraMomentum":  aTRA to visualize Eulerian linear momentum barriers.
+_"aTRA2DTurbulenceLagrangianLinearMomentum": aTRA to visualize Lagrangian linear momentum barriers.
+_"aTRA2DTurbulenceEulerianLineraMomentum": aTRA to visualize Eulerian linear momentum barriers.
 
 References:
 
