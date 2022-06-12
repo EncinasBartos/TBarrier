@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of hyperbolic LCS using the classic algorithm introduced by [1,2,3,4]
+Computation of hyperbolic LCS [1,2,3,4]
 
 The demo is inside the folder "Main":
 
