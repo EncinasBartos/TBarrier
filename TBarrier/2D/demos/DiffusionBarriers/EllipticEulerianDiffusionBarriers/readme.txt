@@ -19,12 +19,12 @@ _"EllipticEulerianDiffusionBarriersAgulhas": Elliptic Eulerian diffusion barrier
 
 Auxiliary functions in current folder:
 
-_"closed_curve":      	     	Checks if curve is smooth and closed and returns the closed curve if it exists.
+_"closed_curve": Checks if curve is smooth and closed and returns the closed curve if it exists.
 _"find_outermost_closed_curve": Computes outermost elliptic Eulerian diffusion barrier within each family of elliptic  elliptic Eulerian diffusion barriers.
-_"init_level_set":            	Computes set of ICs based on stretching parameter.
-_"phi_prime":				    Computes Interpolants for phi_prime and denominator of phi_prime
-_"RK4_integration": 			Defines RK4-integration scheme.
-_"closed_null_geodesics":       Wrapper function to compute outermost closed null geodesics (=outermost elliptic Eulerian diffusion barrier)
+_"init_level_set": Computes set of ICs based on transport density.
+_"phi_prime":	Computes Interpolants for phi_prime and denominator of phi_prime
+_"RK4_integration": Defines RK4-integration scheme.
+_"closed_null_geodesics": Wrapper function to compute outermost closed null geodesics (=outermost elliptic Eulerian diffusion barrier)
 
 References:
 
