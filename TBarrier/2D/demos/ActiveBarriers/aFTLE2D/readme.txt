@@ -15,10 +15,10 @@ Computation of active momentum and vorticity barriers from aFTLE according to [1
 
 The demos are inside the folders "Main"
 
-_"aFTLE2DTurbulenceLagrangianVorticity":  aFTLE to visualize Lagrangian vorticity barriers.
-_"aFTLE2DTurbulenceLagrangianLinearMomentum":  aFTLE to visualize Lagrangian linear momentum barriers.
-_"aFTLE2DTurbulenceEulerianVorticity":  aFTLE to visualize Eulerian vorticity barriers.
-_"aFTLE2DTurbulenceEulerianLineraMomentum":  aFTLE to visualize Eulerian linear momentum barriers.
+_"aFTLE2DTurbulenceLagrangianVorticity": aFTLE to visualize Lagrangian vorticity barriers.
+_"aFTLE2DTurbulenceLagrangianLinearMomentum": aFTLE to visualize Lagrangian linear momentum barriers.
+_"aFTLE2DTurbulenceEulerianVorticity": aFTLE to visualize Eulerian vorticity barriers.
+_"aFTLE2DTurbulenceEulerianLineraMomentum": aFTLE to visualize Eulerian linear momentum barriers.
 
 References:
 
