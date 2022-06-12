@@ -15,8 +15,8 @@ Computation of active momentum and vorticity barriers from aTSE according to [1,
 
 The demos are inside the folders "Main"
 
-_"aTSE2DTurbulenceLagrangianLinearMomentum":  aTSE to visualize Lagrangian linear momentum barriers.
-_"aTSE2DTurbulenceEulerianLineraMomentum":    aTSE to visualize Eulerian linear momentum barriers.
+_"aTSE2DTurbulenceLagrangianLinearMomentum": aTSE to visualize Lagrangian linear momentum barriers.
+_"aTSE2DTurbulenceEulerianLineraMomentum": aTSE to visualize Eulerian linear momentum barriers.
 
 References:
 
