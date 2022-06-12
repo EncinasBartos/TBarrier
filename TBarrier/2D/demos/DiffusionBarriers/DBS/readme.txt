@@ -19,7 +19,7 @@ _"DBSAgulhas": DBS demo applied to AVISO data set in Agulhas region
 
 Auxiliary functions in current folder:
 
-_"DBS":       Computes DBS from averaged Cauchy Green strain tensor.
+_"DBS": Computes DBS from averaged Cauchy Green strain tensor.
 
 References:
 
