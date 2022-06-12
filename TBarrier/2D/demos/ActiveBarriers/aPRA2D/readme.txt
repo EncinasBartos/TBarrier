@@ -15,10 +15,10 @@ Computation of active momentum and vorticity barriers from aPRA according to [1,
 
 The demos are inside the folders "Main"
 
-_"aPRA2DTurbulenceLagrangianVorticity":  aPRA to visualize Lagrangian vorticity barriers.
-_"aPRA2DTurbulenceLagrangianLinearMomentum":  aPRA to visualize Lagrangian linear momentum barriers.
-_"aPRA2DTurbulenceEulerianVorticity":  aPRA to visualize Eulerian vorticity barriers.
-_"aPRA2DTurbulenceEulerianLineraMomentum":  aPRA to visualize Eulerian linear momentum barriers.
+_"aPRA2DTurbulenceLagrangianVorticity": aPRA to visualize Lagrangian vorticity barriers.
+_"aPRA2DTurbulenceLagrangianLinearMomentum": aPRA to visualize Lagrangian linear momentum barriers.
+_"aPRA2DTurbulenceEulerianVorticity": aPRA to visualize Eulerian vorticity barriers.
+_"aPRA2DTurbulenceEulerianLineraMomentum": aPRA to visualize Eulerian linear momentum barriers.
 
 References:
 
