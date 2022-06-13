@@ -16,7 +16,7 @@ Computation of FTLE [1,2,3]
 The demo is inside the folder "Main":
 
 _"FTLEABCsteady": FTLE demo applied to steady ABC-flow.
-_"FTLEABCunsteady": FTLE demo applied to steady ABC-flow.
+_"FTLEABCunsteady": FTLE demo applied to unsteady ABC-flow.
 
 Auxiliary functions in current folder:
 

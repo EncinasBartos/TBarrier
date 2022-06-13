@@ -1,15 +1,25 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%              ____________________   ___           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%             /  ________   ___   /__/  /           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%            /  _____/  /  /  /  ___   /            %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%           /_______/  /__/  /__/  /__/             %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%    Swiss Federal Institute of Technology Zurich   %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Author: Alex P. Encinas Bartos, George Haller    %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Email:  enalex@ethz.ch                           %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%  Date:   31/12/2021                               %%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%              ____________________   ___             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%             /  ________   ___   /__/  /             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%            /  _____/  /  /  /  ___   /              %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%           /_______/  /__/  /__/  /__/               %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%     Swiss Federal Institute of Technology Zurich    %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Authors:    Alex P. Encinas Bartos, George Haller  %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Revised by: Balint Kaszas                          %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Email:      enalex@ethz.ch                         %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Poincare Map of steady ABC-flow.
-There is also and additional demo which computes the Poincare Map of the same steady ABC-flow, assuming an analytic model.
-Feel free to compare the accuracy of the analytic model with the purely data-driven results.
+Computation of Poincare Map [1,2]
+
+The demo is inside the folder "Main":
+
+_"PoincareMap3D": Poincare map demo applied to discretized steady ABC-flow.
+_"PoincareMap3Dsteady": Poincare map demo applied to analytic steady ABC-flow.
+
+References:
+
+[1] Oettinger, D., & Haller, G. (2016). An autonomous dynamical system captures all LCSs in three-dimensional unsteady flows. Chaos: An Interdisciplinary Journal of Nonlinear Science, 26(10), 103111.
+
+[2] Notebook 2.2.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.

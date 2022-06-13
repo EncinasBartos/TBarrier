@@ -11,20 +11,19 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of FTLE [1,2,3]
+Computation of LAVD [1,2]
 
 The demo is inside the folder "Main":
 
-_"LAVDABC": FTLE demo applied to steady and unsteady ABC-flow
+_"LAVDABCsteady": LAVD demo applied to steady ABC-flow.
+_"LAVDABCunsteady": LAVD demo applied to unsteady ABC-flow.
 
 Auxiliary functions in current folder:
 
-_"FTLE": computes FTLE either from Cauchy Green strain tensor or gradient of the flow map.
+_"LAVD": computes LAVD from vorticity.
 
 References:
 
-[1] Haller, G. (2015). Lagrangian coherent structures. Annual Review of Fluid Mechanics, 47, 137-162.
+[1] Haller, G., Hadjighasem, A., Farazmand, M., & Huhn, F. (2016). Defining coherent vortices objectively from the vorticity. Journal of Fluid Mechanics, 795, 136-173.
 
-[2] Haller, G., & Sapsis, T. (2011). Lagrangian coherent structures and the smallest finite-time Lyapunov exponent. Chaos: An Interdisciplinary Journal of Nonlinear Science, 21(2), 023115.
-
-[3] Notebook 5.2.3 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 5.2.7. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
