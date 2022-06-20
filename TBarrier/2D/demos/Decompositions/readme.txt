@@ -16,8 +16,8 @@ Computation of SVD/DP/DPD.
 The demo is inside the folder "SVD2D/DP2D/DPD2D":
 
 _"SVD2D": Singular Value Decomposition of gradient of flow map applied to AVISO data set in Agulhas region [1]
-_"PD2D": Pollar Decomposition of gradient of flow map applied to AVISO data set in Agulhas region [2]
-_"DPD2D": Dynamic Polar Decompisition of gradient of flow map applied to AVISO data set in Agulhas region [3]
+_"PD2D": Polar Decomposition of gradient of flow map applied to AVISO data set in Agulhas region [2]
+_"DPD2D": Dynamic Polar Decomposition of gradient of flow map applied to AVISO data set in Agulhas region [3]
 
 References:
 
