@@ -26,6 +26,10 @@ For a complete [Installation-guideline](Installation.md) we refer to the 'Instal
 
 You can read more about using conda environments in the [Managing Environments](http://conda.pydata.org/docs/using/envs.html) section of the conda documentation.
 
+## Authors
+
+Alex Pablo Encinas Bartos, Balint Kaszas and George Haller
+
 ## License
 
 ### Code
