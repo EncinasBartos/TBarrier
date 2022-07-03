@@ -16,6 +16,10 @@ The handbook was written and tested with Python 3.7.
 
 Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed.
 
+## Authors
+
+Alex Pablo Encinas Bartos, Balint Kaszas and George Haller
+
 ## Software
 
 The jupyter notebooks were tested with Python 3.7.
