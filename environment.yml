@@ -12,7 +12,6 @@ dependencies:
   - pip # Python's package-management system
   - python=3.7 # Python! Not using latest version as some libs lack support
   - scipy=1.6 # scientific/technical computing library
-  - skimage=0.18.3
   - tqdm=4.56 # a progress bar library
   - wheel # built-package format for pip
   - widgetsnbextension=3.5 # interactive HTML widgets for Jupyter notebooks
@@ -23,3 +22,6 @@ dependencies:
     - sdeint==0.2.2
     - ipynb==0.5.1
     - mat73==0.55
+    - jupyter_contrib_nbextensions == 0.5.1
+    - great-circle-calculator==1.2.0
+    - skimage==0.19.2

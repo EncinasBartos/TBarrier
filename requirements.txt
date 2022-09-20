@@ -20,3 +20,6 @@
   - mat73==0.55 # library for importing large mat files
   - sdeint==0.2.2 # library for stochastic differential equations
   - plotly==5.6.0 # library for plotly
+  - great-circle-calculator==1.2.0
+  - jupyter_contrib_nbextensions==0.5.1
+  - skimage==0.19.2
