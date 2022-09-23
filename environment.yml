@@ -18,10 +18,10 @@ dependencies:
   - shapely=1.8.0 # working with geometrical objects such as Polygons
   - numba=0.54.1 # library for fast computing
   - plotly=5.6.0
+  - scikit-image
   - pip:
     - sdeint==0.2.2
     - ipynb==0.5.1
     - mat73==0.55
     - jupyter_contrib_nbextensions == 0.5.1
     - great-circle-calculator==1.2.0
-    - skimage==0.19.2
