@@ -1,4 +1,4 @@
-<img src="TBarrierlogo.png" width="340" align="right">
+<img src="TBarrierLogo.png" width="340" align="right">
 
 <h1 style="font-family:Helvetica;" align="left">
     TBarrier Notebook
