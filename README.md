@@ -38,6 +38,11 @@ The code in this repository, including all code samples in the notebooks listed 
 ### Text
 The text content of the book is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
 
+### Video tutorials:
+Video tutorials for the individual jupyter notebooks can be found on Youtube:
+
+https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu
+
 ### References
 
 When using this code, please cite the following source for the underlying theory:
