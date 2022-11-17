@@ -41,7 +41,7 @@ The text content of the book is released under the [CC-BY-NC-ND license](LICENSE
 ### Video tutorials:
 Video tutorials for the individual jupyter notebooks can be found on Youtube:
 
-https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu
+[TBarrier tutorial](https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
 
 ### References
 
