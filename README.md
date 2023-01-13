@@ -47,4 +47,4 @@ Video tutorials for the individual jupyter notebooks can be found on Youtube:
 
 When using this code, please cite the following source for the underlying theory:
  
-G. Haller, Transport Barriers and Coherent Structures in Flow Data– Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (2022)
+G. Haller, Transport Barriers and Coherent Structures in Flow Data– Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (February 2023)
