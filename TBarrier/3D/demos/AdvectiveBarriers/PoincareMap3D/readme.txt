@@ -20,6 +20,6 @@ _"PoincareMap3Dsteady": Poincare map demo applied to analytic steady ABC-flow.
 
 References:
 
-[1] Oettinger, D., & Haller, G. (2016). An autonomous dynamical system captures all LCSs in three-dimensional unsteady flows. Chaos: An Interdisciplinary Journal of Nonlinear Science, 26(10), 103111.
+[1] Notebook 2.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
 
-[2] Notebook 2.2.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Link to YouTube Tutorial: https://youtu.be/P9ZWlaQGnRI
