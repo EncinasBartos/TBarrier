@@ -25,4 +25,6 @@ References:
 
 [1] Haller, G., Karrasch, D., & Kogelbauer, F. (2018). Material barriers to diffusive and stochastic transport. Proceedings of the National Academy of Sciences, 115(37), 9074-9079.
 
-[2] Notebook 8.1.7. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 8.3. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[3] Link to YouTube Tutorial: https://youtu.be/xB8-NdFOGlI
