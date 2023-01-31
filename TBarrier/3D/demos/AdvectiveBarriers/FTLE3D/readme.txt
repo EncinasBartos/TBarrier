@@ -29,3 +29,5 @@ References:
 [2] Haller, G., & Sapsis, T. (2011). Lagrangian coherent structures and the smallest finite-time Lyapunov exponent. Chaos: An Interdisciplinary Journal of Nonlinear Science, 21(2), 023115.
 
 [3] Notebook 5.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[4] Link to YouTube Tutorial https://youtu.be/lMX2PqcFM4g
