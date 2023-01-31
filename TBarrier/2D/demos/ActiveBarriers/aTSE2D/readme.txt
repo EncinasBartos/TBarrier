@@ -22,4 +22,6 @@ References:
 
 [1] Haller, G., Katsanoulis, S., Holzner, M., Frohnapfel, B., & Gatti, D. (2020). Objective barriers to the transport of dynamically active vector fields. Journal of Fluid Mechanics, 905.
 
-[2] Notebook 9.7.3. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 9.4. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[3] [YouTube Tutorial](https://youtu.be/4YwqRtyN0CI)
