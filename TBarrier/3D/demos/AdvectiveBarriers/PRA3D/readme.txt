@@ -24,5 +24,3 @@ _"PRA": computes PRA from gradient of the flow map.
 References:
 
 [1] Farazmand, M., & Haller, G. (2016). Polar rotation angle identifies elliptic islands in unsteady dynamical systems. Physica D: Nonlinear Phenomena, 315, 1-12.
-
-[2] Notebook 5.2.8 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller
