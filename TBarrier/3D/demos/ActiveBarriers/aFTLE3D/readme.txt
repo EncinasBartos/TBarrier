@@ -16,10 +16,10 @@ Computation of active FTLE (aFTLE) [1,2,3]
 The demo is inside the folder "Main":
 
 _"aFTLEABCviscous": active FTLE uncovers barriers to linear momentum and vorticity in a viscous, unsteady ABC flow.
-_"aFTLE3DChannel_part1": active FTLE uncovers barriers to linear momentum and vorticity in a turbulent channel flow, part 1.
-_"aFTLE3DChannel_part2": active FTLE uncovers barriers to linear momentum and vorticity in a turbulent channel flow, part 2.
+_"aFTLE3DChannel_JHTDB": active FTLE uncovers barriers to linear momentum and vorticity in a turbulent channel flow.
+_"aFTLE3DChannel_UMZ": active FTLE uncovers barriers to linear momentum and vorticity in a turbulent channel flow, part 2.
 
-NOTE: "aFTLE3Dchannel_part2" is conceptually the same as "aFTLE3Dchannel_part1" on a different domain. The reason why we include it, is that it reproduces the results on the momentum barriers [3] available in matlab on https://github.com/haller-group/TRA_TSE.
+NOTE: "aFTLE3Dchannel_UMZ" is conceptually the same as "aFTLE3Dchannel_JHTDB" on a different domain. The reason why we include it, is that it reproduces the results on the momentum barriers [2] available in matlab on https://github.com/haller-group/TRA_TSE.
 
 References:
 
@@ -27,4 +27,4 @@ References:
 
 [2] Aksamit, N.O., & Haller, G. (2022). Objective momentum barriers in wall turbulence. Journal of Fluid Mechanics, 941.
 
-[2] Notebook 9.7.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[3] Notebook 9.3. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
