@@ -32,4 +32,4 @@ References:
 
 [1] Serra, M., & Haller, G. (2017). Efficient computation of null geodesics with applications to coherent vortex detection. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 473(2199).
 
-[2] Notebook 5.4.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 5.15. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.

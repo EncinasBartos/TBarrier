@@ -11,7 +11,7 @@
 %%%%%%%%%%%%%%%%%%%%%  Date:       07/06/2022                             %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Computation of TRA [1,3]
+Computation of TRA [1, 2, 3]
 
 The demos are inside the folder "Main":
 
@@ -28,4 +28,4 @@ References:
 
 [2] Encinas-Bartos, A. P., Aksamit, N. O., & Haller, G. (2022). Quasi-Objective Eddy Visualization from Sparse Drifter Data. preprint.
 
-[3] Notebook 5.5.3 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller
+[3] Notebook 5.11. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller

@@ -21,4 +21,4 @@ _"PoincareBickley": Poincare map demo applied to periodic Bickley jet.
 
 [2] del‐Castillo‐Negrete, D., & Morrison, P. J. (1993). Chaotic transport by Rossby waves in shear flow. Physics of Fluids A: Fluid Dynamics, 5(4), 948-965.
 
-[3] Notebook 2.2.2 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[3] Notebook 2.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.

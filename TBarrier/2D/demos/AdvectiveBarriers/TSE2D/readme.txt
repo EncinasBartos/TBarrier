@@ -25,4 +25,4 @@ References:
 
 [1] Haller, G., Aksamit, N., & Encinas-Bartos, A. P. (2021). Quasi-objective coherent structure diagnostics from single trajectories. Chaos: An Interdisciplinary Journal of Nonlinear Science, 31(4), 043131.
 
-[2] Notebook 5.5.1 in "Transport Barriers and Coherent Structures in Flow Data" by George Haller
+[2] Notebook 5.9. in "Transport Barriers and Coherent Structures in Flow Data" by George Haller

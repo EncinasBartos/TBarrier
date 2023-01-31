@@ -21,4 +21,4 @@ References:
 
 [1] Haller, G. (2001). Lagrangian structures and the rate of strain in a partition of two-dimensional turbulence. Physics of Fluids, 13(11), 3365-3385.
 
-[2] Notebook 5.6.1 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 5.13. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.

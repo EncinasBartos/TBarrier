@@ -34,4 +34,4 @@ References:
 
 [3] Onu, K., Huhn, F., & Haller, G. (2015). LCS Tool: A computational platform for Lagrangian coherent structures. Journal of Computational Science, 7, 26-36.
 
-[4] Notebook 5.3.1 in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[4] Notebook 5.6. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
