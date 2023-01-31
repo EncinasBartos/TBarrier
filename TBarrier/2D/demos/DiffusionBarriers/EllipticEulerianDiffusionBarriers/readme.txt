@@ -30,6 +30,8 @@ References:
 
 [1] Haller, G., Karrasch, D., & Kogelbauer, F. (2018). Material barriers to diffusive and stochastic transport. Proceedings of the National Academy of Sciences, 115(37), 9074-9079.
 
-[1] Serra, M., & Haller, G. (2017). Efficient computation of null geodesics with applications to coherent vortex detection. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 473(2199).
+[2] Serra, M., & Haller, G. (2017). Efficient computation of null geodesics with applications to coherent vortex detection. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 473(2199).
 
-[2] Notebook 5.4.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[3] Notebook 8.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[4] Link to YouTube Tutorial: https://youtu.be/gyDxsiqKezk
