@@ -27,3 +27,5 @@ References:
 [1] Haller, G., Hadjighasem, A., Farazmand, M., & Huhn, F. (2016). Defining coherent vortices objectively from the vorticity. Journal of Fluid Mechanics, 795, 136-173.
 
 [2] Notebook 5.5. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[3] Link to YouTube Tutorial: https://youtu.be/dfPyBW3RC5g
