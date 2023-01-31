@@ -22,4 +22,6 @@ References:
 
 [1] Oettinger, D., & Haller, G. (2016). An autonomous dynamical system captures all LCSs in three-dimensional unsteady flows. Chaos: An Interdisciplinary Journal of Nonlinear Science, 26(10), 1031
 
-[2] Notebook 5.4.2. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+[2] Notebook 5.8. in "Transport Barriers and Coherent Structures in Flow Data" by Prof. George Haller.
+
+[3] Link to YouTube Tutorial: https://youtu.be/aNi5GQNavpM
