@@ -10,9 +10,14 @@ TBarrier notebooks contains a series of jupyter notebooks that guide you  throug
 
 - Run the code using the Jupyter notebooks available in this repository's [TBarrier](TBarrier) directory.
 
+### Video tutorials:
+Video tutorials for the individual jupyter notebooks can be found on Youtube:
+
+[TBarrier tutorial](https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
+
 ## About
 
-The handbook was written and tested with Python 3.7.
+The notebooks are written and tested with Python 3.7.
 
 Familiarity with Python and its core libraries [NumPy](http://numpy.org), [scipy](https://scipy.org/), [Matplotlib](http://matplotlib.org), [Scikit-Learn](http://scikit-learn.org) is assumed.
 
@@ -37,11 +42,6 @@ The code in this repository, including all code samples in the notebooks listed 
 
 ### Text
 The text content of the book is released under the [CC-BY-NC-ND license](LICENSE-TEXT). Read more at [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode).
-
-### Video tutorials:
-Video tutorials for the individual jupyter notebooks can be found on Youtube:
-
-[TBarrier tutorial](https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
 
 ### References
 
