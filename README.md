@@ -10,7 +10,7 @@ TBarrier notebooks contains a series of jupyter notebooks that guide you  throug
 
 - Run the code using the Jupyter notebooks available in this repository's [TBarrier](TBarrier) directory.
 
-### Video tutorials:
+###Video tutorials:
 Video tutorials for the individual jupyter notebooks can be found on Youtube:
 
 [TBarrier tutorial](https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
