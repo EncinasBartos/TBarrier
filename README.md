@@ -51,3 +51,7 @@ The text content of the book is released under the [CC-BY-NC-ND license](LICENSE
 When using this code, please cite the following source for the underlying theory:
  
 G. Haller, Transport Barriers and Coherent Structures in Flow Data– Advective, diffusive, stochastic and methods (with the assistance of A. Encinas-Bartos). Cambridge University Press, to appear (February 2023)
+
+and the GitHub repository as:
+
+Alex Pablo Encinas Bartos, Bálint Kaszás, & George Haller. (2023). haller-group/TBarrier: TBarrier (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.6779400
