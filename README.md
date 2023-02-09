@@ -20,7 +20,7 @@ TBarrier notebooks contains a series of jupyter notebooks that guide you  throug
 
 Video tutorials for the individual jupyter notebooks can be found on Youtube:
 
-[TBarrier video tutorials](https://www.youtube.com/watch?v=UMIvbmLQ6TU&list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
+[TBarrier video tutorials](https://youtube.com/playlist?list=PLJHY7IecnoJwGg7xPr2Qiw1-fmnIfPnLu)
 
 ## About
 
