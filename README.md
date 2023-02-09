@@ -1,7 +1,7 @@
 <img src="TBarrierLogo.png" width="340" align="right">
 
 <h1 style="font-family:Helvetica;" align="left">
-    TBarrier Notebook
+    TBarrier notebook collection
 </h1>
 
 TBarrier notebooks contains a series of jupyter notebooks that guide you  through methods used to extract advective, diffusive, stochastic and active transport barriers from discrete velocity data.
