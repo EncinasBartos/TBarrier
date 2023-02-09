@@ -15,7 +15,6 @@ TBarrier notebook collection contains a series of jupyter notebooks that guide y
 <img src="Thumbnail.png" width="340" align="right">
 
 <h1 style="font-family:Helvetica;" align="left">
-</h1>
 
 Video tutorials for the individual jupyter notebooks can be found on Youtube:
 
