@@ -22,6 +22,8 @@ _"InstantaneousActiveVorticity": Interpolant for RHS of active instantaneous (Eu
 _"LagrangianActiveMomentum": Interpolant for RHS of active Lagrangian linear momentum barrier equation.
 _"LagrangianActiveVorticity": Interpolant for RHS of active Lagrangian vorticity barrier equation.
 
+NOTE: We have also added two notebooks which compute the dynamically active barriers on AVISO data (see folder "Ocean"). This is not completely justified, since AVISO data does not satisfy the Navier-Stokes equations from which the active barrier equations have been derived. 
+
 References:
 
 [1] Haller, G., Katsanoulis, S., Holzner, M., Frohnapfel, B., & Gatti, D. (2020). Objective barriers to the transport of dynamically active vector fields. Journal of Fluid Mechanics, 905.
